@@ -84,11 +84,3 @@ if (isset($error))
     </footer>
   </div>
 </div>
-
-<script>
-
-document.getElementById('info').onclick = function(){document.getElementById('modal').classList.add("is-active")};
-document.getElementById('delete').onclick = function(){document.getElementById('modal').classList.remove("is-active")};
-document.getElementById('gotit').onclick = function(){document.getElementById('modal').classList.remove("is-active")};
-
-</script>
