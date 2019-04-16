@@ -12,3 +12,16 @@ ul.modal_list li{
 #user_picture{
     margin-right: 10px;
 }
+.img_user img{
+    border: 1px solid black;
+    margin: 30px;
+}
+.user_login{
+    line-height: 128px;
+    vertical-align: middle;
+}
+.settings_user{
+    margin-left: 20px;
+    line-height: 3rem;
+    vertical-align: middle;
+}
