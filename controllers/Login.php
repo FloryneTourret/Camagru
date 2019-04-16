@@ -23,6 +23,10 @@ Class Login extends Controller{
                         if ($user['enabled'] == 1)
                         {
                             $_SESSION['user'] = $user;
+                            if ($user['admin'] == 1)
+                                $_SESSION['admin'] = 1;
+                            else
+                                $_SESSION['admin'] = 0;
                             header('Location: /');
                         }
                         else
