@@ -14,4 +14,4 @@
     <link rel="shortcut icon" href="/assets/img/camera.png" type="image/png">
 
 </head>
-<body>
+<body class="has-navbar-fixed-top">

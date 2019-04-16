@@ -9,3 +9,6 @@ ul.modal_list li{
 #info{
     cursor: pointer;
 }
+#user_picture{
+    margin-right: 10px;
+}
