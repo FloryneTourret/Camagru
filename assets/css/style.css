@@ -1,3 +1,7 @@
+a{
+    text-decoration: none!important;
+}
+
 ul.modal_list li{
     list-style-type: circle;
     margin-left: 40px;

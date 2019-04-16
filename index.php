@@ -21,6 +21,7 @@ foreach ($params as $param) {
 
 $controller = isset($params[0]) && !empty($params[0]) ? $params[0] : 'Accueil';
 $method = isset($params[1]) && !empty($params[1]) ? $params[1] : 'index';
+$argv = isset($params[2]) && !empty($params[2]) ? $params[2] : '';
 
 if (file_exists('controllers/' . $controller . '.php')) {
     require 'controllers/' . $controller . '.php';
@@ -29,7 +30,10 @@ if (file_exists('controllers/' . $controller . '.php')) {
 		$controller->set_params($params[2]);
 	}
     if (method_exists($controller, $method)) {
-        $controller->$method();
+        if (!empty($argv))
+            $controller->$method($argv);
+        else
+            $controller->$method();
     } else {
         include '404.php';
     }

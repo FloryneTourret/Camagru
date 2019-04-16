@@ -30,7 +30,7 @@ if (isset($error))
         <button class="button is-medium is-fullwidth is-primary" type="submit">Me connecter</button>
     </div>
     <div class="field has-text-right">
-      <a class="has-text-primary" href="/index.php/ForgotPassword">Mot de passe oublié?</a>
+      <a class="has-text-primary" href="/index.php/login/forgotpassword">Mot de passe oublié?</a>
     </div>
 </form>
 </div>
@@ -39,7 +39,7 @@ if (isset($error))
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head">
-      <p class="modal-card-title">Modal title</p>
+      <p class="modal-card-title">Règles de mot de passe</p>
       <button class="delete" id="delete" aria-label="close"></button>
     </header>
     <section class="modal-card-body">
@@ -57,3 +57,5 @@ if (isset($error))
     </footer>
   </div>
 </div>
+
+<script src="/assets/js/modal.js"></script>

@@ -101,7 +101,7 @@ if (isset($error))
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head">
-      <p class="modal-card-title">Modal title</p>
+      <p class="modal-card-title">Règles de mot de passe</p>
       <button class="delete" id="delete" aria-label="close"></button>
     </header>
     <section class="modal-card-body">
@@ -119,3 +119,5 @@ if (isset($error))
     </footer>
   </div>
 </div>
+
+<script src="/assets/js/modal.js"></script>
