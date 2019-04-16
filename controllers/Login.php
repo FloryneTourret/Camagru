@@ -9,28 +9,33 @@ Class Login extends Controller{
         $data = array();
         $this->loadModel('Login_model');
 
-        if (isset($_POST['user_login']) && isset($_POST['user_password']))
+        if (isset($_POST['user_login']) && isset($_POST['user_password']) && isset($_POST['user_token']))
         {
-            $login = trim(strtolower(htmlspecialchars(addslashes($_POST['user_login']))));
-            $password = htmlspecialchars(addslashes($_POST['user_password']));
-            $user = $this->Login_model->get_user($login);
-            if (!empty($user))
+            if($_POST['user_token'] == $_SESSION['token'])
             {
-                if (password_verify($password, $user['password']))
+                $login = trim(strtolower(htmlspecialchars(addslashes($_POST['user_login']))));
+                $password = htmlspecialchars(addslashes($_POST['user_password']));
+                $user = $this->Login_model->get_user($login);
+                if (!empty($user))
                 {
-                    if ($user['enabled'] == 1)
+                    if (password_verify($password, $user['password']))
                     {
-                        $_SESSION['user'] = $user;
-                        header('Location: /');
+                        if ($user['enabled'] == 1)
+                        {
+                            $_SESSION['user'] = $user;
+                            header('Location: /');
+                        }
+                        else
+                            $data['error'] = "Votre compte n'est pas encore activé. Veuillez l'activer depuis le lien envoyé sur votre adresse email.";
                     }
                     else
-                        $data['error'] = "Votre compte n'est pas encore activé. Veuillez l'activer depuis le lien envoyé sur votre adresse email.";
+                        $data['error'] = "Mot de passe incorrect. Veuillez ré-essayer.";
                 }
                 else
-                    $data['error'] = "Mot de passe incorrect. Veuillez ré-essayer.";
+                    $data['error'] = "Identifiants inconnus.";
             }
             else
-                $data['error'] = "Identifiants inconnus.";
+                $data['error'] = "Une erreur est survenue.";
         }
         $this->loadView('Base/header_view');
         $this->loadView('Base/navbar_view');
@@ -46,20 +51,25 @@ Class Login extends Controller{
         $this->loadModel('Register_model');
         $data = array();
 
-        if(isset($_POST['user_email']))
+        if(isset($_POST['user_email']) && isset($_POST['user_token']))
         {
-            $email = trim(strtolower(htmlspecialchars(addslashes($_POST['user_email']))));
-            if ($this->Register_model->email_already_used($email) == TRUE)
+            if($_POST['user_token'] == $_SESSION['token'])
             {
-                $token = bin2hex(openssl_random_pseudo_bytes(15));
-                $link = 'http://'.$_SERVER["HTTP_HOST"].'/index.php/Login/resetpassword/'.$token;
-                $this->Register_model->create_token($email, $token);
-                $message = "Bienvenue sur Camagru\r\nPour récupérer votre mot de passe, veuillez cliquer sur le lien suivant\r\n".$link;
-                mail($email, 'Camagru - Password recovery', $message);
-                header('Location: /index.php/Login');
+                $email = trim(strtolower(htmlspecialchars(addslashes($_POST['user_email']))));
+                if ($this->Register_model->email_already_used($email) == TRUE)
+                {
+                    $token = bin2hex(openssl_random_pseudo_bytes(15));
+                    $link = 'http://'.$_SERVER["HTTP_HOST"].'/index.php/Login/resetpassword/'.$token;
+                    $this->Register_model->create_token($email, $token);
+                    $message = "Bienvenue sur Camagru\r\nPour récupérer votre mot de passe, veuillez cliquer sur le lien suivant\r\n".$link;
+                    mail($email, 'Camagru - Password recovery', $message);
+                    header('Location: /index.php/Login');
+                }
+                else
+                    $data['error'] = "Cet email n'existe pas.";
             }
             else
-                $data['error'] = "Cet email n'existe pas.";
+                $data['error'] = "Une erreur est survenue.";
         }
         $this->loadView('Base/header_view');
         $this->loadView('Base/navbar_view');
@@ -83,19 +93,24 @@ Class Login extends Controller{
                 $data['success'] = "Veuillez entrer votre nouveau mot de passe";
                 if (isset($_POST['user_password'])&& isset($_POST['user_password_confirm']) && isset($_POST['user_token']))
                 {
-                    if ($_POST['user_password'] == $_POST['user_password_confirm'])
+                    if($_POST['user_token'] == $_SESSION['token'])
                     {
-                        if (strlen($_POST['user_password']) > 11 && preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#', $_POST['user_password'])) 
+                        if ($_POST['user_password'] == $_POST['user_password_confirm'])
                         {
-                            $password = password_hash(htmlspecialchars(addslashes($_POST['user_password'])), PASSWORD_DEFAULT);
-                            $this->Login_model->resetPassword($password, $token);
-                            header('Location: /index.php/Login');
+                            if (strlen($_POST['user_password']) > 11 && preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#', $_POST['user_password'])) 
+                            {
+                                $password = password_hash(htmlspecialchars(addslashes($_POST['user_password'])), PASSWORD_DEFAULT);
+                                $this->Login_model->resetPassword($password, $token);
+                                header('Location: /index.php/Login');
+                            }
+                            else
+                                $data['error_password'] = "Le mot de passe n'est pas conforme.";
                         }
                         else
-                            $data['error_password'] = "Le mot de passe n'est pas conforme.";
+                            $data['error_password'] = "Les mots de passe ne correspondent pas.";
                     }
                     else
-                        $data['error_password'] = "Les mots de passe ne correspondent pas.";
+                        $data['error'] = "Une erreur est survenue.";
                 }
             }
             else
