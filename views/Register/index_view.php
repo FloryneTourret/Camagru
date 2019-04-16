@@ -1,56 +1,91 @@
-<?php 
+<?php
 if (isset($error))
     echo '<div class="columns"><div class="column is-half is-offset-one-quarter"><p class="has-text-danger">'.$error.'</p></div></div>';
 ?>
 <div class="columns">
-<form class="column is-half is-offset-one-quarter" action="/index.php/register" method="post">
+<form class="column is-half is-offset-one-quarter" action="/index.php/Register" method="post">
 
     <div class="field">
         <label class="label">Prénom</label>
         <div class="control">
-            <input class="input" type="text" name="user_firstname" placeholder="Votre prénom" required>
+        <p class="control has-icons-left">
+            <input class="input" type="text" name="user_firstname" placeholder="Votre prénom" required value="<?php if(isset($_POST['user_firstname'])){echo $_POST['user_firstname'];}?>">
+            <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+            </span>
+        </p>
         </div>
     </div>
 
     <div class="field">
         <label class="label">Nom</label>
         <div class="control">
-            <input class="input" type="text" name="user_lastname" placeholder="Votre nom" required>
+        <p class="control has-icons-left">
+            <input class="input" type="text" name="user_lastname" placeholder="Votre nom" required value="<?php if(isset($_POST['user_lastname'])){echo $_POST['user_lastname'];}?>">
+            <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+            </span>
+        </p>
         </div>
     </div>
 
     <div class="field">
         <label class="label">Pseudo</label>
         <div class="control">
-            <input class="input" type="text" name="user_login" placeholder="Votre pseudo" required>
+        <p class="control has-icons-left">
+            <input class="input" type="text" name="user_login" placeholder="Votre pseudo" required value="<?php if(isset($_POST['user_login'])){echo $_POST['user_login'];}?>">
+            <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+            </span>
+        </p>
         </div>
     </div>
 
     <div class="field">
         <label class="label">Email</label>
         <div class="control">
-            <input class="input" type="email" name="user_email" placeholder="Votre adresse email" required>
+        <p class="control has-icons-left">
+            <input class="input" type="email" name="user_email" placeholder="Votre adresse email" required value="<?php if(isset($_POST['user_email'])){echo $_POST['user_email'];}?>">
+            <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+            </span>
+        </p>
         </div>
     </div>
 
     <div class="field">
         <label class="label">Confirmez votre email</label>
         <div class="control">
-            <input class="input" type="email" name="user_email_confirm" placeholder="Confirmez votre adresse email" required>
+        <p class="control has-icons-left">
+            <input class="input" type="email" name="user_email_confirm" placeholder="Confirmez votre adresse email" required value="<?php if(isset($_POST['user_email_confirm'])){echo $_POST['user_email_confirm'];}?>">
+            <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+            </span>
+        </p>
         </div>
     </div>
 
     <div class="field">
         <label class="label">Mot de passe <i class="fas fa-info-circle" id="info"></i></label>
         <div class="control">
+        <p class="control has-icons-left">
             <input class="input" type="password" name="user_password" placeholder="Votre mot de passe" required>
+            <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+            </span>
+        </p>
         </div>
     </div>
 
     <div class="field">
         <label class="label">Confirmez votre mot de passe</label>
         <div class="control">
+        <p class="control has-icons-left">
             <input class="input" type="password" name="user_password_confirm" placeholder="Confirmez votre mot de passe" required>
+            <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+            </span>
+        </p>
         </div>
     </div>
 

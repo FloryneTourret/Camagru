@@ -23,14 +23,38 @@
 
     <div class="navbar-end">
       <div class="navbar-item">
+        <?php if (isset($_SESSION['user'])){?>
+          <div class="navbar-item dropdown has-dropdown is-hoverable dropdown is-right">
+            <div class="dropdown-trigger">
+              <a class="navbar-link">
+                <?php echo $_SESSION['user']['login'];?>
+              </a>
+
+              <div class="navbar-dropdown is-right">
+                <a class="navbar-item" href="/index.php/Profile">
+                  Profil
+                </a>
+                <a class="navbar-item" href="/index.php/Account">
+                  Gestion du compte
+                </a>
+                <hr class="navbar-divider">
+                <a class="navbar-item" href="/index.php/Logout">
+                  Déconnexion
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <?php } else { ?>
         <div class="buttons">
-          <a class="button is-primary" href="/index.php/register">
+          <a class="button is-primary" href="/index.php/Register">
             <strong>Inscription</strong>
           </a>
-          <a class="button is-light" href="/index.php/login">
+          <a class="button is-light" href="/index.php/Login">
             Connexion
           </a>
         </div>
+        <?php } ?>
       </div>
     </div>
   </div>
