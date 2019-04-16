@@ -42,9 +42,8 @@ Class Register extends Controller{
                         else
                             $data['error'] = "Désolé, cet email est déjà utilisé.";
                     }
-                    else {
+                    else
                         $data['error'] = "Le mot de passe n'est pas conforme.";
-                    }
                 }
                 else
                     $data['error'] = "Les mots de passe ne correspondent pas.";

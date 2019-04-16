@@ -59,13 +59,54 @@ Class Login extends Controller{
                 header('Location: /index.php/Login');
             }
             else
-                $data['error'] = "Cet email n'existe pas";
+                $data['error'] = "Cet email n'existe pas.";
         }
         $this->loadView('Base/header_view');
         $this->loadView('Base/navbar_view');
         $this->loadView('Login/forgot_password_view', $data);
         $this->loadView('Base/footer_view');
+    }
+
+    public function resetpassword($token)
+    {
+        if(isset($_SESSION['user']))
+            header('Location: /');
         
+        $this->loadModel('Register_model');
+        $this->loadModel('Login_model');
+        $token = trim(htmlspecialchars(addslashes($token)));
+        $data['token'] = $token;
+        if ($this->Register_model->token_exists($token))
+        {
+            if (!($this->Register_model->expirated_token($token)))
+            {
+                $data['success'] = "Veuillez entrer votre nouveau mot de passe";
+                if (isset($_POST['user_password'])&& isset($_POST['user_password_confirm']) && isset($_POST['user_token']))
+                {
+                    if ($_POST['user_password'] == $_POST['user_password_confirm'])
+                    {
+                        if (strlen($_POST['user_password']) > 11 && preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#', $_POST['user_password'])) 
+                        {
+                            $password = password_hash(htmlspecialchars(addslashes($_POST['user_password'])), PASSWORD_DEFAULT);
+                            $this->Login_model->resetPassword($password, $token);
+                            header('Location: /index.php/Login');
+                        }
+                        else
+                            $data['error_password'] = "Le mot de passe n'est pas conforme.";
+                    }
+                    else
+                        $data['error_password'] = "Les mots de passe ne correspondent pas.";
+                }
+            }
+            else
+                $data['error'] = "Le token de validation est expiré.";
+        }
+        else
+            $data['error'] = "Le token est invalide.";
+        $this->loadView('Base/header_view');
+        $this->loadView('Base/navbar_view');
+        $this->loadView('Login/reset_password_view', $data);
+        $this->loadView('Base/footer_view');
     }
 }
 

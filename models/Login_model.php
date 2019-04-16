@@ -8,6 +8,12 @@ Class Login_model extends Model
         $req->execute();
         return ($req->fetch());
     }
+
+    public function resetPassword($password, $token)
+    {
+        $req = $this->db->prepare("UPDATE `users` SET `password`= '$password',`token`= NULL,`token_expiration` = NULL WHERE `token` = '$token'");
+        $req->execute();
+    }
 }
 
 ?>
