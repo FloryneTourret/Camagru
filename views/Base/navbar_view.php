@@ -21,7 +21,13 @@
         <?php if (isset($_SESSION['user'])){?>
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
-              <img id="user_picture" src="/assets/img/avatar.png" width="auto" height="28"><?php echo $_SESSION['user']['login'];?>
+              <?php if (!empty($_SESSION['user']['path_profile_picture'])){?>
+                  <div style='background-image: url("/<?php echo $_SESSION['user']['path_profile_picture']?>"); background-size: cover; border-radius: 100%; height: 28px; width: 28px; margin-right:10px;'>
+              <?php }else{ ?>
+                <div style='background-image: url("/assets/img/avatar.png"); background-size: cover; border-radius: 100%; height: 28px; width: 28px; margin-right:10px;'>
+              <?php } ?>
+                </div>
+              <?php echo $_SESSION['user']['login'];?>
             </a>
 
             <div class="navbar-dropdown is-right">
