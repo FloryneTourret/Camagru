@@ -18,20 +18,44 @@
                 </p>
                 <ul class="menu-list">
                     <li><a onclick="display_profile()" id="display_profile">Modifier mon profil</a></li>
+                    <li><a onclick="display_picture()" id="display_picture">Modifier ma photo de profil</a></li>
                     <li><a onclick="display_password()" id="display_password">Changer mon mot de passe</a></li>
                     <li><a onclick="display_notif()" id="display_notif">Mes notfications</a></li>
                 </ul>
             </aside>
         </div>
         <div class="column is-two-fifths forms_user">  
-
+            <div class="container-changepicture" id="picture">
+            <figure class="image is-128x128 img_user">
+                <?php if (!empty($_SESSION['user']['path_profile_picture'])){?>
+                    <img class="is-rounded" src="/<?php echo $_SESSION['user']['path_profile_picture']?>">
+                <?php }else{ ?>
+                    <img class="is-rounded" src="/assets/img/avatar.png">
+                <?php } ?>
+                </figure>
+                <form action="/index.php/Account" method="post" enctype="multipart/form-data">
+                    <div class="file has-name">
+                        <label class="file-label">
+                        <input class="file-input" id="file_upload" onchange="name_input()" type="file" name="newimg" id="newimg" accept="image/*">
+                            <span class="file-cta">
+                            <span class="file-icon">
+                                <i class="fas fa-upload"></i>
+                            </span>
+                            <span class="file-label">
+                                Séléctionner un fichier
+                            </span>
+                            </span>
+                            <span class="file-name" id="file_output">
+                                Aucun fichier sélectionné
+                            </span>
+                        </label>
+                    </div>
+                    <div class="field">
+                        <button class="button is-small is-fullwidth is-primary" type="submit">Changer ma photo</button>
+                    </div>
+                </form>
+            </div>
             <div class="container-changeprofile" id="profile">
-            <form action="/index.php/Account" method="post" enctype="multipart/form-data">
-            
-                <input type="file" name="newimg" id="newimg" accept="image/*">
-                <button type="submit">GO</button>
-            
-            </form>
                 <form class="column" action="/index.php/Account" method="post">
 
                     <div class="field">

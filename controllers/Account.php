@@ -100,6 +100,7 @@ Class Account extends Controller{
                     $target = 'assets/upload/'.$_SESSION['user']['login'].'/'.$name;
                     $this->Account_model->addimg($target, $_SESSION['user']['user_id']);
                     $_SESSION['user']['path_profile_picture'] = $target;
+                    $data['success'] = "Votre image de profil a bien été mis à jour.";
                 }
                 else
                     $data['error'] = 'Le fichier renseigné n\'est pas une image';
