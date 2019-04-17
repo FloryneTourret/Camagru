@@ -18,6 +18,18 @@ Class Account_model extends Model
         $req = $this->db->prepare("UPDATE `users` SET `password` = '$password' WHERE `user_id` = '$id'");
         $req->execute();
     }
+
+    public function updateProfile($firstname, $lastname, $login, $email, $bio, $id){
+        $req = $this->db->prepare("UPDATE `users` SET `firstname` = '$firstname', `lastname` = '$lastname', `login` = '$login',
+        `email` = '$email', `biography` = '$bio' WHERE `user_id` = '$id'");
+        $req->execute();
+    }
+
+    public function updateNotif($notif, $id)
+    {
+        $req = $this->db->prepare("UPDATE `users` SET `notif` = '$notif' WHERE `user_id` = '$id'");
+        $req->execute();
+    }
 }
 
 ?>

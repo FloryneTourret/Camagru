@@ -34,6 +34,39 @@ Class Account extends Controller{
                     else
                         $data['error'] = "Le nouveau mot de passe n'est pas conforme.";
                 }
+
+                if (isset($_POST['user_firstname']) && isset($_POST['user_lastname']) && isset($_POST['user_pseudo'])
+                    && isset($_POST['user_mail']))
+                {
+                    if (!isset($_POST['user_bio']))
+                        $bio = NULL;
+                    else
+                        $bio = trim(htmlspecialchars(addslashes($_POST['user_bio'])));
+                    $firstname = ucfirst(trim(htmlspecialchars(addslashes($_POST['user_firstname']))));
+                    $lastname = strtoupper(trim(htmlspecialchars(addslashes($_POST['user_lastname']))));
+                    $login = strtolower(trim(htmlspecialchars(addslashes($_POST['user_pseudo']))));
+                    $email = trim(htmlspecialchars(addslashes($_POST['user_mail'])));
+                    $_SESSION['user']['firstname'] = $firstname;
+                    $_SESSION['user']['lastname'] = $lastname;
+                    $_SESSION['user']['login'] = $login;
+                    $_SESSION['user']['email'] = $email;
+                    $_SESSION['user']['biography'] = $bio;
+
+                    $this->Account_model->updateProfile($firstname, $lastname, $login, $email, $bio, $_SESSION['user']['user_id']);
+                    $data['success'] = "Votre profil a bien été mis à jour.";
+                }
+
+                if (isset($_POST['user_notif_active']))
+                {
+                    if (!isset($_POST['user_notif']))
+                        $notif = 0;
+                    else
+                        $notif = 1;
+                    $this->Account_model->updateNotif($notif, $_SESSION['user']['user_id']);
+                    $_SESSION['user']['notif'] = $notif;
+                    $data['success'] = "Vos préférences ont bien été mises à jour.";
+                }
+
             }
             else
                 $data['error'] = "Une erreur est survenue.";
