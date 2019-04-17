@@ -22,9 +22,9 @@
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
               <?php if (!empty($_SESSION['user']['path_profile_picture'])){?>
-                  <div style='background-image: url("/<?php echo $_SESSION['user']['path_profile_picture']?>"); background-size: cover; border-radius: 100%; height: 28px; width: 28px; margin-right:10px;'>
+                  <div style='background-image: url("/<?php echo $_SESSION['user']['path_profile_picture']?>"); background-size: cover; backround-position: 50% 50%; border-radius: 100%; height: 28px; width: 28px; margin-right:10px;'>
               <?php }else{ ?>
-                <div style='background-image: url("/assets/img/avatar.png"); background-size: cover; border-radius: 100%; height: 28px; width: 28px; margin-right:10px;'>
+                <div style='background-image: url("/assets/img/avatar.png"); background-size: cover; border-radius: 100%; backround-position: 50% 50%; height: 28px; width: 28px; margin-right:10px;'>
               <?php } ?>
                 </div>
               <?php echo $_SESSION['user']['login'];?>
