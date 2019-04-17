@@ -31,7 +31,7 @@
             </a>
 
             <div class="navbar-dropdown is-right">
-              <a class="navbar-item" href="/index.php/Profile">
+              <a class="navbar-item" href="/index.php/Profile/<?php echo $_SESSION['user']['login'];?>">
                 Profil
               </a>
               <a class="navbar-item" href="/index.php/Account">

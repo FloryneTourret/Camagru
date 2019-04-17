@@ -24,7 +24,7 @@
                 </ul>
             </aside>
         </div>
-        <div class="column is-two-fifths forms_user">  
+        <div class="column is-two-fifths forms_user">
             <div class="container-changepicture" id="picture">
                 <figure class="image is-128x128 img_user">
                     <?php if (!empty($_SESSION['user']['path_profile_picture'])){?>
