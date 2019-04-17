@@ -26,6 +26,12 @@
         <div class="column is-two-fifths forms_user">  
 
             <div class="container-changeprofile" id="profile">
+            <form action="/index.php/Account" method="post" enctype="multipart/form-data">
+            
+                <input type="file" name="newimg" id="newimg" accept="image/*">
+                <button type="submit">GO</button>
+            
+            </form>
                 <form class="column" action="/index.php/Account" method="post">
 
                     <div class="field">

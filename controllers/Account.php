@@ -71,6 +71,40 @@ Class Account extends Controller{
             else
                 $data['error'] = "Une erreur est survenue.";
         }
+        if (!empty($_FILES))
+        {
+            if ($_FILES['newimg']['type'] == 'image/jpeg' || $_FILES['newimg']['type'] == 'image/png'
+                    || $_FILES['newimg']['type'] == 'image/jpg')
+            {
+                $check = getimagesize($_FILES['newimg']['tmp_name']);
+                if ($check !== false)
+                    $upload = 1;
+                else
+                    $upload = 0;
+                if ($upload == 1)
+                {
+                    $userdir = '/var/www/html/assets/upload/';
+                    if (!file_exists($userdir . $_SESSION['user']['login'])) {
+                        mkdir($userdir . $_SESSION['user']['login'], 0777, true);
+                    }
+                    $target_dir = '/var/www/html/assets/upload/'.$_SESSION['user']['login'].'/';
+                    $name = bin2hex(openssl_random_pseudo_bytes(8));
+                    while (file_exists('/var/www/html/assets/upload'.$_SESSION['user']['login'].'/'.$name))
+                        $name = bin2hex(openssl_random_pseudo_bytes(8));
+                    if ($_FILES['newimg']['type'] == 'image/png')
+                        $name = $name.'.png';
+                    else if ($_FILES['newimg']['type'] == 'image/jpeg')
+                        $name = $name.'.jpg';
+                    $target_file = $target_dir . $name;
+                    move_uploaded_file($_FILES['newimg']['tmp_name'], $target_file);
+                    $target = 'assets/upload/'.$_SESSION['user']['login'].'/'.$name;
+                    $this->Account_model->addimg($target, $_SESSION['user']['user_id']);
+                    $_SESSION['user']['path_profile_picture'] = $target;
+                }
+                else
+                    $data['error'] = 'Le fichier renseigné n\'est pas une image';
+            }
+        }
         $this->loadView('Base/header_view');
         $this->loadView('Base/navbar_view');
         $this->loadView('Account/index_view', $data);
