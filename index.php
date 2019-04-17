@@ -22,6 +22,11 @@ foreach ($params as $param) {
 $controller = isset($params[0]) && !empty($params[0]) ? $params[0] : 'Accueil';
 $method = isset($params[1]) && !empty($params[1]) ? $params[1] : 'index';
 $argv = isset($params[2]) && !empty($params[2]) ? $params[2] : '';
+if ($controller == 'Profile')
+{
+    $method = 'index';
+    $argv = isset($params[1]) && !empty($params[1]) ? $params[1] : '';
+}
 
 if (file_exists('controllers/' . $controller . '.php')) {
     require 'controllers/' . $controller . '.php';
