@@ -31,6 +31,11 @@
               <a class="navbar-item" href="/index.php/Account">
                 Gestion du compte
               </a>
+              <?php if ($_SESSION['admin'] == 1){?>
+              <a class="navbar-item" href="/index.php/Admin">
+                Panel administrateur
+              </a>
+              <?php } ?>
               <hr class="navbar-divider">
               <a class="navbar-item" href="/index.php/Logout">
                 Déconnexion
