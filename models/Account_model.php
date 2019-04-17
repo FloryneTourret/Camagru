@@ -18,6 +18,12 @@ Class Account_model extends Model
         $req = $this->db->prepare("UPDATE `users` SET `password` = '$password' WHERE `user_id` = '$id'");
         $req->execute();
     }
+
+    public function addimg($path, $id)
+    {
+        $req = $this->db->prepare("UPDATE `users` SET `path_profile_picture` = '$path' WHERE `user_id` = '$id'");
+        $req->execute();
+    }
 }
 
 ?>

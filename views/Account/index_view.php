@@ -51,7 +51,12 @@
             </div>
         </form>
 
-
+            <form action="/index.php/Account" method="post" enctype="multipart/form-data">
+            
+                <input type="file" name="newimg" id="newimg" accept="image/*">
+                <button type="submit">GO</button>
+            
+            </form>
 
         <h2>Modifier mon pseudo, ...</h2>
         <form class="column" action="/index.php/Account" method="post">
@@ -112,7 +117,6 @@
                 <button class="button is-medium is-fullwidth is-primary" type="submit">Mettre à jour mon profil</button>
             </div>
         </form>
-
 
 
     </div>
