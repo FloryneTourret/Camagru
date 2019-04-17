@@ -29,6 +29,8 @@ Class Login extends Controller{
                                 $_SESSION['admin'] = 0;
                             header('Location: /');
                         }
+                        else if($user['enabled'] == -1)
+                            $data['error'] = "Votre compte a été désactivé par un administrateur.";
                         else
                             $data['error'] = "Votre compte n'est pas encore activé. Veuillez l'activer depuis le lien envoyé sur votre adresse email.";
                     }
