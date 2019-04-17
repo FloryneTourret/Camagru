@@ -26,14 +26,15 @@
         </div>
         <div class="column is-two-fifths forms_user">  
             <div class="container-changepicture" id="picture">
-            <figure class="image is-128x128 img_user">
-                <?php if (!empty($_SESSION['user']['path_profile_picture'])){?>
-                    <img class="is-rounded" src="/<?php echo $_SESSION['user']['path_profile_picture']?>">
-                <?php }else{ ?>
-                    <img class="is-rounded" src="/assets/img/avatar.png">
-                <?php } ?>
+                <figure class="image is-128x128 img_user">
+                    <?php if (!empty($_SESSION['user']['path_profile_picture'])){?>
+                        <div style='background-image: url("/<?php echo $_SESSION['user']['path_profile_picture']?>"); background-size: cover; border-radius: 100%; height: 128px; width: 128px;'>
+                    <?php }else{ ?>
+                    <div style='background-image: url("/assets/img/avatar.png"); background-size: cover; border-radius: 100%; height: 128px; width: 128px;'>
+                    <?php } ?>
+                    </div>
                 </figure>
-                <form action="/index.php/Account" method="post" enctype="multipart/form-data">
+                <form action="/index.php/Account" method="post" enctype="multipart/form-data" class="form_upload">
                     <div class="file has-name">
                         <label class="file-label">
                         <input class="file-input" id="file_upload" onchange="name_input()" type="file" name="newimg" id="newimg" accept="image/*">

@@ -16,13 +16,17 @@ ul.modal_list li{
     border: 1px solid black;
     margin: 30px;
 }
-.image img.is-rounded
+.info_profile{
+    margin-top: 5vh;
+}
+.picture_profile
 {
-    height: 100%;
-    width: 100%;
+    margin-left: 5vw;
+}
+.form_upload{
+    margin-top: 2vh;
 }
 .user_login{
-    line-height: 128px;
     vertical-align: middle;
 }
 .settings_user{
