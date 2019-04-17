@@ -12,6 +12,9 @@
         <h1 class="user_login is-size-1"><?php echo $_SESSION['user']['login']?><a href="/index.php/Account" class="has-text-dark is-size-4 settings_user"><i class="fas fa-cog"></i></a></h1>
         <p><?php echo $_SESSION['user']['firstname'].' '.$_SESSION['user']['lastname'] ?></p>
         <p><?php echo $_SESSION['user']['email']?></p>
+        <?php if (!empty($_SESSION['user']['biography'])){?>
+            <p class="is-italic"><?php echo $_SESSION['user']['biography']?></p>
+        <?php } ?>
     </div>
 </div>
 <div class="tabs is-centered">
