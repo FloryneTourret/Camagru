@@ -2,9 +2,9 @@
     <div class="column is-one-quarter">
         <figure class="image is-128x128 img_user">
         <?php if (!empty($_SESSION['user']['path_profile_picture'])){?>
-            <div class="picture_profile" style='background-image: url("/<?php echo $_SESSION['user']['path_profile_picture']?>"); background-size: cover; backround-position: 50% 50%; border-radius: 100%; height: 128px; width: 128px;'>
+            <div class="picture_profile" style='background-image: url("/<?php echo $_SESSION['user']['path_profile_picture']?>"); background-size: cover; background-position: 50% 50%; border-radius: 100%; height: 128px; width: 128px;'>
         <?php }else{ ?>
-          <div class="picture_profile" style='background-image: url("/assets/img/avatar.png"); background-size: cover; backround-position: 50% 50%; border-radius: 100%; height: 128px; width: 128px;'>
+          <div class="picture_profile" style='background-image: url("/assets/img/avatar.png"); background-size: cover; background-position: 50% 50%; border-radius: 100%; height: 128px; width: 128px;'>
         <?php } ?>
         </div>
         </figure>
