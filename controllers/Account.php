@@ -5,6 +5,7 @@ Class Account extends Controller{
     public function index(){
         $data = array();
         $this->loadModel('Account_model');
+        $this->loadModel('Register_model');
         if(!isset($_SESSION['user']))
             header('Location: /');
         if (isset($_POST['user_token']))
@@ -46,14 +47,23 @@ Class Account extends Controller{
                     $lastname = strtoupper(trim(htmlspecialchars(addslashes($_POST['user_lastname']))));
                     $login = strtolower(trim(htmlspecialchars(addslashes($_POST['user_pseudo']))));
                     $email = trim(htmlspecialchars(addslashes($_POST['user_mail'])));
-                    $_SESSION['user']['firstname'] = $firstname;
-                    $_SESSION['user']['lastname'] = $lastname;
-                    $_SESSION['user']['login'] = $login;
-                    $_SESSION['user']['email'] = $email;
-                    $_SESSION['user']['biography'] = $bio;
-
-                    $this->Account_model->updateProfile($firstname, $lastname, $login, $email, $bio, $_SESSION['user']['user_id']);
-                    $data['success'] = "Votre profil a bien été mis à jour.";
+                    if ($this->Register_model->email_already_used($email) == FALSE || $email == $_SESSION['user']['email'])
+                    {
+                        if ($this->Register_model->login_already_used($login) == FALSE || $login == $_SESSION['user']['login'])
+                        {
+                            $_SESSION['user']['firstname'] = $firstname;
+                            $_SESSION['user']['lastname'] = $lastname;
+                            $_SESSION['user']['login'] = $login;
+                            $_SESSION['user']['email'] = $email;
+                            $_SESSION['user']['biography'] = $bio;
+                            $this->Account_model->updateProfile($firstname, $lastname, $login, $email, $bio, $_SESSION['user']['user_id']);
+                            $data['success'] = "Votre profil a bien été mis à jour.";
+                        }
+                        else
+                            $data['error'] = "Désolé, ce login est déjà utilisé.";
+                    }
+                    else
+                        $data['error'] = "Désolé, cet email est déjà utilisé.";
                 }
 
                 if (isset($_POST['user_notif_active']))

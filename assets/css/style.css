@@ -1,7 +1,12 @@
 a{
     text-decoration: none!important;
 }
-
+td{
+    font-size: .9rem;
+}
+td.email{
+    word-break: break-all;
+}
 ul.modal_list li{
     list-style-type: circle;
     margin-left: 40px;
@@ -89,4 +94,7 @@ input:checked + .slider:before {
     background-color: transparent;
     color: gray;
     border-left: 1px solid gray;
+}
+.container-filters, .container-users{
+    padding-right: 5vw;
 }
