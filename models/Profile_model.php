@@ -8,6 +8,12 @@ Class Profile_model extends Model
         $req->execute();
         return ($req->fetch());
     }
+
+    public function get_pictures($id){
+        $req = $this->db->prepare("SELECT * from `pictures` WHERE `picture_user_id` = '$id'");
+        $req->execute();
+        return ($req->fetchAll());
+    }
 }
 
 ?>

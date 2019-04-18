@@ -13,6 +13,8 @@ Class Profile extends Controller{
         else
             $login = htmlspecialchars(addslashes($login));
         $data['user'] = $this->Profile_model->get_current($login);
+        $id = $data['user']['user_id'];
+        $data['pictures'] = $this->Profile_model->get_pictures($id);
         if ($data['user'] == FALSE)
         {
             $data['error'] = "Le profil que vous recherchez n'existe pas.";

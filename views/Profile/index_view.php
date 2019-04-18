@@ -46,3 +46,42 @@
     </li>
   </ul>
 </div>
+
+<div class="row"> 
+  <div class="col" id="col1">
+  </div>
+
+  <div class="col" id="col2">
+  </div> 
+
+  <div class="col" id="col3">
+  </div>
+
+  <div class="col" id="col4">
+  </div>
+</div>
+
+
+<script>
+var pictures = <?php echo json_encode($pictures);?>;
+col1 = document.getElementById('col1');
+col2 = document.getElementById('col2');
+col3 = document.getElementById('col3');
+col4 = document.getElementById('col4');
+
+i = 0;
+pictures.forEach(function(element) {
+  i++;
+  if(i == 1)
+    col1.innerHTML += '<img src="/'+element['picture_path']+'">'
+  else if(i == 2)
+    col2.innerHTML += '<img src="/'+element['picture_path']+'">'
+  else if(i == 3)
+    col3.innerHTML += '<img src="/'+element['picture_path']+'">'
+  else if(i == 4)
+    col4.innerHTML += '<img src="/'+element['picture_path']+'">'
+  if (i == 4)
+    i = 0;
+});
+
+</script>
