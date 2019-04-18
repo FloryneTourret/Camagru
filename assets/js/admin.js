@@ -1,19 +1,19 @@
-document.getElementById('filters').style.display = "none";
-document.getElementById('display_filters').classList.remove("is-active");
+document.getElementById('admin').style.display = "none";
+document.getElementById('display_admin').classList.remove("is-active");
 document.getElementById('users').style.display = "block";
 document.getElementById('display_users').classList.add("is-active");
 
-function display_filters(){
-    document.getElementById('filters').style.display = "block";
-    document.getElementById('display_filters').classList.add("is-active");
+function display_admin(){
+    document.getElementById('admin').style.display = "block";
+    document.getElementById('display_admin').classList.add("is-active");
     document.getElementById('users').style.display = "none";
     document.getElementById('display_users').classList.remove("is-active"); 
     
 }
 
 function display_users(){
-    document.getElementById('filters').style.display = "none";
-    document.getElementById('display_filters').classList.remove("is-active");
+    document.getElementById('admin').style.display = "none";
+    document.getElementById('display_admin').classList.remove("is-active");
     document.getElementById('users').style.display = "block";
     document.getElementById('display_users').classList.add("is-active"); 
     

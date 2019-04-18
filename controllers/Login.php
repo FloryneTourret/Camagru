@@ -83,7 +83,7 @@ Class Login extends Controller{
         $this->loadView('Base/footer_view');
     }
 
-    public function resetpassword($token)
+    public function resetpassword($token = null)
     {
         if(isset($_SESSION['user']))
             header('Location: /');

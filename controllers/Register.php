@@ -62,7 +62,7 @@ Class Register extends Controller{
         $this->loadView('Base/footer_view');
     }
 
-    public function activate($token)
+    public function activate($token = null)
     {
         if(isset($_SESSION['user']))
             header('Location: /');

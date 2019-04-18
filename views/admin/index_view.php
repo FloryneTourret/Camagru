@@ -18,7 +18,7 @@
                 </p>
                 <ul class="menu-list">
                     <li><a onclick="display_users()" id="display_users">Gérer les utilisateurs</a></li>
-                    <li><a onclick="display_filters()" id="display_filters">Gérer les filtres</a></li>
+                    <li><a onclick="display_admin()" id="display_admin">Ajouter un administrateur</a></li>
                 </ul>
             </aside>
         </div>
@@ -73,8 +73,77 @@
                     </tbody>
                 </table>
             </div>
-            <div class="container-filters" id="filters">
-                Gestion filtres
+            <div class="container-admin" id="admin">
+                <div class="columns">
+                    <form class="column is-three-quarters" action="/index.php/Admin" method="post">
+
+                        <div class="field">
+                            <label class="label">Prénom</label>
+                            <div class="control">
+                            <p class="control has-icons-left">
+                                <input class="input" type="text" name="user_firstname" placeholder="Prénom" required value="<?php if(isset($_POST['user_firstname'])){echo $_POST['user_firstname'];}?>">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </p>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Nom</label>
+                            <div class="control">
+                            <p class="control has-icons-left">
+                                <input class="input" type="text" name="user_lastname" placeholder="Nom" required value="<?php if(isset($_POST['user_lastname'])){echo $_POST['user_lastname'];}?>">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </p>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Pseudo</label>
+                            <div class="control">
+                            <p class="control has-icons-left">
+                                <input class="input" type="text" name="user_login" placeholder="Pseudo" required value="<?php if(isset($_POST['user_login'])){echo $_POST['user_login'];}?>">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </p>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Email</label>
+                            <div class="control">
+                            <p class="control has-icons-left">
+                                <input class="input" type="email" name="user_email" placeholder="Adresse email" required value="<?php if(isset($_POST['user_email'])){echo $_POST['user_email'];}?>">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                            </p>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Confirmez votre email</label>
+                            <div class="control">
+                            <p class="control has-icons-left">
+                                <input class="input" type="email" name="user_email_confirm" placeholder="Confirmation adresse email" required value="<?php if(isset($_POST['user_email_confirm'])){echo $_POST['user_email_confirm'];}?>">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                            </p>
+                            </div>
+                        </div>
+
+                        <input class="input" name="user_token" type="hidden" value="<?php echo $_SESSION['token'];?>">
+
+                        <div class="field">
+                            <button class="button is-medium is-fullwidth is-primary" type="submit">Inscrire</button>
+                        </div>
+                    </form>
+                </div>
             </div>
 
         </div>
