@@ -116,6 +116,11 @@ Class Account extends Controller{
                     $data['error'] = 'Le fichier renseigné n\'est pas une image';
             }
         }
+        if(isset($_GET['delete']))
+        {
+            if($_GET['delete'] == $_SESSION['user']['user_id'])
+                $this->Account_model->delete($_GET['delete']);
+        }
         $this->loadView('Base/header_view');
         $this->loadView('Base/navbar_view');
         $this->loadView('Account/index_view', $data);

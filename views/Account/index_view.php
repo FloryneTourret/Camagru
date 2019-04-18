@@ -21,6 +21,7 @@
                     <li><a onclick="display_picture()" id="display_picture">Modifier ma photo de profil</a></li>
                     <li><a onclick="display_password()" id="display_password">Changer mon mot de passe</a></li>
                     <li><a onclick="display_notif()" id="display_notif">Mes notfications</a></li>
+                    <li><a onclick="display_delete()" id="display_delete">Supprimer mon compte</a></li>
                 </ul>
             </aside>
         </div>
@@ -167,6 +168,21 @@
                         <button class="button is-medium is-fullwidth is-primary" type="submit">Mettre à jour mes paramètres</button>
                     </div>
                 </form>
+            </div>
+
+            <div class="container-delete" id="delete">
+
+                <div class="column">
+                    <div class="field">
+                        <label class="label">Supprimer mon compte ?</label>
+                        <p class="has-text-danger">Attention, cette action est irreversible. Une fois le compte supprimé, toutes les données seront effacées et ne pourront pas être récupérées.</p>
+                    </div>
+                    <input class="input" name="user_token" type="hidden" value="<?php echo $_SESSION['token'];?>">
+                    <input class="input" name="user_delete" type="hidden" value="<?php echo $_SESSION['token'];?>">
+                    <div class="field">
+                        <button class="button is-medium is-fullwidth is-danger" onclick="account_delete('<?php echo $_SESSION['user']['user_id'];?>')">Supprimer</button>
+                    </div>
+                </div>
             </div>
 
         </div>
