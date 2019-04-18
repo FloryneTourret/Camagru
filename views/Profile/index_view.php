@@ -20,48 +20,43 @@
 </div>
 <div class="tabs is-centered">
   <ul>
-    <li class="is-active">
-      <a>
+    <li class="is-active" id="display_pictures">
+      <a onclick="display_pictures()">
         <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
         <span>Pictures</span>
       </a>
     </li>
-    <li>
-      <a>
-        <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
-        <span>Music</span>
-      </a>
-    </li>
-    <li>
-      <a>
-        <span class="icon is-small"><i class="fas fa-film" aria-hidden="true"></i></span>
-        <span>Videos</span>
-      </a>
-    </li>
-    <li>
-      <a>
-        <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
-        <span>Documents</span>
+    <li id="display_likes">
+      <a onclick="display_likes()">
+        <span class="icon is-small"><i class="fas fa-heart" aria-hidden="true"></i></span>
+        <span>Likes</span>
       </a>
     </li>
   </ul>
 </div>
 
-<div class="row"> 
-  <div class="col" id="col1">
-  </div>
+<div id="pictures">
+  <div class="row"> 
+    <div class="col" id="col1">
+    </div>
 
-  <div class="col" id="col2">
-  </div> 
+    <div class="col" id="col2">
+    </div> 
 
-  <div class="col" id="col3">
-  </div>
+    <div class="col" id="col3">
+    </div>
 
-  <div class="col" id="col4">
+    <div class="col" id="col4">
+    </div>
   </div>
 </div>
 
+<div id="likes">
 
+</div>
+
+
+<script src="/assets/js/profile.js"></script>
 <script>
 var pictures = <?php echo json_encode($pictures);?>;
 col1 = document.getElementById('col1');
