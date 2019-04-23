@@ -42,6 +42,23 @@ ul.modal_list li{
 .gestion_user{
     margin-top: 5vh;
 }
+.picture{
+    width: 60vw;
+    margin-left: 20vw;
+    margin-top: 10vh;
+    margin-bottom: 1vh;
+    height: auto;
+    -moz-box-shadow: 10px 10px 20px #9e9d9d;
+    -webkit-box-shadow: 10px 10px 20px #9e9d9d;
+    -o-box-shadow: 10px 10px 20px #9e9d9d;
+    box-shadow: 10px 10px 20px #9e9d9d;
+}
+.infos{
+    margin-bottom: 3vh;
+}
+.comment{
+    margin-left: 20px;
+}
 
 .switch {
     position: relative;

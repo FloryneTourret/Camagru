@@ -27,7 +27,7 @@ Class Profile_model extends Model
     }
 
     public function get_likes($id){
-        $req = $this->db->prepare("SELECT * FROM `likes`
+        $req = $this->db->prepare("SELECT `login` FROM `likes`
                                 INNER JOIN `users` on users.user_id = likes.like_user_id
                                 WHERE `like_picture_id` = $id");
         $req->execute();
