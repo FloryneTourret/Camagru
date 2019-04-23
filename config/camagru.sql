@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : mysql
--- Généré le :  jeu. 18 avr. 2019 à 14:50
+-- Généré le :  mar. 23 avr. 2019 à 17:16
 -- Version du serveur :  5.5.61
 -- Version de PHP :  7.2.14
 
@@ -21,6 +21,52 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `camagru`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `comments`
+--
+
+CREATE TABLE `comments` (
+  `comment_id` int(11) NOT NULL,
+  `comment_user_id` int(11) NOT NULL,
+  `comment_picture_id` int(11) NOT NULL,
+  `comment_content` varchar(255) NOT NULL,
+  `comment_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `comments`
+--
+
+INSERT INTO `comments` (`comment_id`, `comment_user_id`, `comment_picture_id`, `comment_content`, `comment_date`) VALUES
+(1, 1, 2, 'Coucou', '2019-04-18 15:35:10'),
+(2, 1, 2, 'ergergty', '2019-04-18 15:40:44'),
+(3, 3, 2, 'coucou', '2019-04-18 16:54:19'),
+(4, 3, 2, 'afdfda', '2019-04-18 17:04:46'),
+(5, 2, 6, 'Waouh !', '2019-04-18 17:52:43');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `likes`
+--
+
+CREATE TABLE `likes` (
+  `like_user_id` int(11) NOT NULL,
+  `like_picture_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `likes`
+--
+
+INSERT INTO `likes` (`like_user_id`, `like_picture_id`) VALUES
+(2, 2),
+(2, 3),
+(2, 19),
+(2, 13);
 
 -- --------------------------------------------------------
 
@@ -99,6 +145,12 @@ INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `login`, `email`, `biog
 --
 
 --
+-- Index pour la table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`comment_id`);
+
+--
 -- Index pour la table `pictures`
 --
 ALTER TABLE `pictures`
@@ -116,6 +168,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
+
+--
+-- AUTO_INCREMENT pour la table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `pictures`
