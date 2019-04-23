@@ -10,7 +10,7 @@
         </figure>
     </div>
     <div class="column is-half">
-        <h1 class="user_login is-size-1"><?php echo $user['login']?><?php if ($user['login'] == $_SESSION['user']['login']) echo '<a href="/index.php/Account" class="has-text-dark is-size-4 settings_user"><i class="fas fa-cog"></i></a>';?></h1>
+        <h1 class="user_login is-size-1"><?php echo $user['login']?><?php if(isset($_SESSION['user']['login']))if ($user['login'] == $_SESSION['user']['login']) echo '<a href="/index.php/Account" class="has-text-dark is-size-4 settings_user"><i class="fas fa-cog"></i></a>';?></h1>
         <p><?php echo $user['firstname'].' '.$user['lastname'] ?></p>
         <p><?php echo $user['email']?></p>
         <?php if (!empty($user['biography'])){?>

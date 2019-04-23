@@ -7,6 +7,11 @@
                     <p class="has-text-weight-semibold is-size-4 login"><?php echo $image['login']; ?></p>
                 </div>
                 <div class="has-text-right column is-half">
+                    <?php 
+                    if(isset($_SESSION['user']['user_id']))
+                        if ($image['user_id'] == $_SESSION['user']['user_id'])
+                        echo '<small class="has-text-danger" id="delete" onclick="delete_picture('.$image['picture_id'].')"><i class="fas fa-trash"></i></small><br>';
+                    ?>
                     <small class="timestamp is-italic date"><?php echo $image['picture_date']; ?></small>
                 </div>
             </div>

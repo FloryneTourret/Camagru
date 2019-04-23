@@ -51,6 +51,11 @@ Class Profile_model extends Model
         $req = $this->db->prepare("DELETE FROM `likes` WHERE `like_user_id` = $id AND `like_picture_id` = $picture_id");
         $req->execute();
     }
+
+    public function del_image($id){
+        $req = $this->db->prepare("DELETE FROM `pictures` WHERE `picture_id` = $id");
+        $req->execute();
+    }
 }
 
 ?>

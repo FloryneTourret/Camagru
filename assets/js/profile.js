@@ -111,4 +111,13 @@ function unlike(likes, id){
     req.open("GET", '/index.php/Profile/picture/' + id + '?unlike=true', true);
     req.send(null); 
 	document.getElementById('likes').innerHTML = '<span class="has-text-danger is-size-5 like" id="like" onclick="like('+ (likes - 1) +', '+ id +')"><i class="far fa-heart"></i>'+ (likes - 1) +'</span>';
-} 
+}
+
+function delete_picture(id){
+	if ( confirm( "Êtes vous sur de vouloir supprimer cette image ? Cette action est irreversible." ) ) {
+		req = new XMLHttpRequest();
+		req.open("GET", '/index.php/Profile/picture/' + id + '?delete=true', true);
+		req.send(null);
+		document.location.reload();
+	}
+}
