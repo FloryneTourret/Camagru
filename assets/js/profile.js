@@ -90,7 +90,7 @@ function load(url, element) {
 function close_modal(){
     modal = document.getElementById("modal").classList.remove("is-active");
     document.body.classList.remove("is-clipped");
-};
+}
 
 function open_modal(id){
     load("/index.php/Profile/picture/" + id, document.getElementById("picture_modal"));
@@ -98,3 +98,17 @@ function open_modal(id){
     document.getElementById("modal").classList.add("is-active");
     document.body.classList.add("is-clipped");
 }
+
+function like(likes, id){
+	req = new XMLHttpRequest();
+    req.open("GET", '/index.php/Profile/picture/' + id + '?like=true', true);
+    req.send(null); 
+	document.getElementById('likes').innerHTML = '<span class="has-text-danger is-size-5 like" id="unlike" onclick="unlike('+ (likes + 1) +', '+ id +')"><i class="fas fa-heart"></i>'+ (likes + 1) +'</span>';
+}
+
+function unlike(likes, id){
+	req = new XMLHttpRequest();
+    req.open("GET", '/index.php/Profile/picture/' + id + '?unlike=true', true);
+    req.send(null); 
+	document.getElementById('likes').innerHTML = '<span class="has-text-danger is-size-5 like" id="like" onclick="like('+ (likes - 1) +', '+ id +')"><i class="far fa-heart"></i>'+ (likes - 1) +'</span>';
+} 

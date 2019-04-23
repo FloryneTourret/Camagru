@@ -41,6 +41,16 @@ Class Profile_model extends Model
         $req->execute();
         return($req->fetchAll());
     }
+
+    public function like_image($picture_id, $id){
+        $req = $this->db->prepare("INSERT INTO `likes`(`like_user_id`, `like_picture_id`) VALUES ($id, $picture_id)");
+        $req->execute();
+    }
+
+    public function unlike_image($picture_id, $id){
+        $req = $this->db->prepare("DELETE FROM `likes` WHERE `like_user_id` = $id AND `like_picture_id` = $picture_id");
+        $req->execute();
+    }
 }
 
 ?>

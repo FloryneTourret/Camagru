@@ -25,11 +25,13 @@
         <div class="column">
             <div class="columns">
                 <div class="column is-half">
+                    <div id="likes">
                     <?php if ($liked == 1) { ?>
-                        <span class="has-text-danger is-size-5 like" id="like"><i class="fas fa-heart"></i><?php echo $image['likes_count']; ?></span>
+                        <span class="has-text-danger is-size-5 like" id="unlike" onclick="unlike(<?php echo $image['likes_count']; ?>, <?php echo $image['picture_id']; ?>)"><i class="fas fa-heart"></i><?php echo $image['likes_count']; ?></span>
                     <?php }else{ ?>
-                        <span class="has-text-danger is-size-5 like" id="unlike"><i class="far fa-heart"></i><?php echo $image['likes_count']; ?></span>
-                    <?php } ?> 
+                        <span class="has-text-danger is-size-5 like" id="like" onclick="like(<?php echo $image['likes_count']; ?>, <?php echo $image['picture_id']; ?>)"><i class="far fa-heart"></i><?php echo $image['likes_count']; ?></span>
+                    <?php } ?>
+                    </div>
                     <?php 
                     $i = 0;
                     if($image['likes_count'] > 0)
