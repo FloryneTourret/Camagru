@@ -42,6 +42,11 @@ Class Profile extends Controller{
         if(isset($_GET['delete']) && $_GET['delete'] == true)
             if($_SESSION['user']['user_id'] == $data['image']['user_id'])
                 $this->Profile_model->del_image($id, $_SESSION['user']['user_id']);
+        if(isset($_GET['comment']))
+        {
+            $comment = trim(htmlspecialchars(addslashes($_GET['comment'])));
+            $this->Profile_model->comment_image($id, $_SESSION['user']['user_id'], $comment);
+        }
         if (empty($data['image']))
         {
             $data['error'] = "L'image que vous recherchez n'existe pas.";

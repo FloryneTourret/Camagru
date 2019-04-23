@@ -101,14 +101,14 @@ function open_modal(id){
 
 function like(likes, id){
 	req = new XMLHttpRequest();
-    req.open("GET", '/index.php/Profile/picture/' + id + '?like=true', true);
+	req.open("GET", '/index.php/Profile/picture/' + id + '?like=true', true);
     req.send(null); 
 	document.getElementById('likes').innerHTML = '<span class="has-text-danger is-size-5 like" id="unlike" onclick="unlike('+ (likes + 1) +', '+ id +')"><i class="fas fa-heart"></i>'+ (likes + 1) +'</span>';
 }
 
 function unlike(likes, id){
 	req = new XMLHttpRequest();
-    req.open("GET", '/index.php/Profile/picture/' + id + '?unlike=true', true);
+	req.open("GET", '/index.php/Profile/picture/' + id + '?unlike=true', true);
     req.send(null); 
 	document.getElementById('likes').innerHTML = '<span class="has-text-danger is-size-5 like" id="like" onclick="like('+ (likes - 1) +', '+ id +')"><i class="far fa-heart"></i>'+ (likes - 1) +'</span>';
 }
@@ -120,4 +120,17 @@ function delete_picture(id){
 		req.send(null);
 		document.location.reload();
 	}
+}
+
+function comment(id)
+{
+	var comment = encodeURIComponent(document.getElementById('comment_content').value.trim());
+	if(comment!= '')
+	{
+		req = new XMLHttpRequest();
+		req.open("GET", '/index.php/Profile/picture/' + id + '?comment=' + comment, true);
+		req.send(null);
+		load("/index.php/Profile/picture/" + id, document.getElementById("picture_modal"));
+	}
+	
 }

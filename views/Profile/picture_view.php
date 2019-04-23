@@ -106,12 +106,12 @@
                 <div class="media-content">
                     <div class="field">
                     <p class="control">
-                        <textarea class="textarea" placeholder="Ajouter un commentaire..."></textarea>
+                        <textarea class="textarea" placeholder="Ajouter un commentaire..." id="comment_content"></textarea>
                     </p>
                     </div>
                     <div class="field">
                     <p class="control has-text-right">
-                        <button class="button">Commenter</button>
+                        <button class="button" onclick="comment(<?php echo $image['picture_id']?>, <?php echo $_SESSION['user']['user_id']?>)">Commenter</button>
                     </p>
                     </div>
                 </div>

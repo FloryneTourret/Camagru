@@ -56,6 +56,11 @@ Class Profile_model extends Model
         $req = $this->db->prepare("DELETE FROM `pictures` WHERE `picture_id` = $id");
         $req->execute();
     }
+
+    public function comment_image($picture_id, $id, $comment){
+        $req = $this->db->prepare("INSERT INTO `comments`(`comment_user_id`, `comment_picture_id`, `comment_content`) VALUES ($id, $picture_id, '$comment')");
+        $req->execute();
+    }
 }
 
 ?>
