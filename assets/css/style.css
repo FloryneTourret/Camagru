@@ -126,3 +126,23 @@ input:checked + .slider:before {
         max-width: 100%;
     }
 }
+
+img#output
+{
+    width: 100%;
+}
+
+.snap-container {
+    display: none;
+}
+
+#videoElement {
+	width: 100%;
+	height: auto;
+    background-color: #666;
+    display: none;
+}
+
+#uploadform {
+    display: none;
+}
