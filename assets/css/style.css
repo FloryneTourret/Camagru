@@ -149,17 +149,20 @@ img#output
     width: 100%;
 }
 
-.snap-container {
-    display: none;
-}
-
 #videoElement {
 	width: 100%;
 	height: auto;
     background-color: #666;
+}
+
+#myCanvas {
     display: none;
 }
 
 #uploadform {
+    display: none;
+}
+
+#snap-form {
     display: none;
 }
