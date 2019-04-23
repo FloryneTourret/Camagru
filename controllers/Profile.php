@@ -47,10 +47,7 @@ Class Profile extends Controller{
         {
             $data['comments'] = $this->Profile_model->get_comments($id);
             $data['likes'] = $this->Profile_model->get_likes($id);
-            $this->loadView('Base/header_view');
-            $this->loadView('Base/navbar_view');
             $this->loadView('Profile/picture_view', $data);
-            $this->loadView('Base/footer_view');
         }
     }
 }

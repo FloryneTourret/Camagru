@@ -1,4 +1,3 @@
-
 function timeDifference(current, previous, offset) {
 	var msPerMinute = 60 * 1000;
 	var msPerHour = msPerMinute * 60;
@@ -46,7 +45,6 @@ var now = new Date(Date.now()).getTime();
 var offset = new Date(Date.now()).getTimezoneOffset();
 
 var timestamp = document.getElementsByClassName("timestamp");
-
 for (var i = 0; i < timestamp.length; i++) {
 	var date = timestamp[i].innerHTML;
 
