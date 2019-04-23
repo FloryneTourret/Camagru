@@ -42,10 +42,22 @@ ul.modal_list li{
 .gestion_user{
     margin-top: 5vh;
 }
+
+.login{
+    margin-left: 84px;
+    line-height: 64px;
+    vertical-align: middle;
+}
+.date{
+    line-height: 64px;
+    vertical-align: middle;
+}
+.like{
+    cursor: pointer;
+}
 .picture{
-    width: 60vw;
-    margin-left: 20vw;
-    margin-top: 10vh;
+    clear: both;
+    width: 100%;
     margin-bottom: 1vh;
     height: auto;
     -moz-box-shadow: 10px 10px 20px #9e9d9d;
@@ -53,11 +65,20 @@ ul.modal_list li{
     -o-box-shadow: 10px 10px 20px #9e9d9d;
     box-shadow: 10px 10px 20px #9e9d9d;
 }
-.infos{
-    margin-bottom: 3vh;
+.content_picture{
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 3vh;
 }
-.comment{
-    margin-left: 20px;
+#picture_modal{
+    height: 80%;
+    margin-top: 8%;
+    background-color: #F5F5F5;
+    border-radius: 2%;
+    overflow-x: hidden;
+}
+#picture_modal::-webkit-scrollbar { 
+    display: none; 
 }
 
 .switch {

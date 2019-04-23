@@ -51,10 +51,15 @@
   </div>
 </div>
 
+<div class="modal" id="modal">
+  <div class="modal-background" onclick="close_modal()"></div>
+  <div class="modal-content" id="picture_modal"></div>
+  <button class="modal-close is-large" aria-label="close" onclick="close_modal()"></button>
+</div>
+
 <div id="likes">
 
 </div>
-
 
 <script src="/assets/js/profile.js"></script>
 <script>
@@ -68,13 +73,13 @@ i = 0;
 pictures.forEach(function(element) {
   i++;
   if(i == 1)
-    col1.innerHTML += '<img src="/'+element['picture_path']+'">'
+    col1.innerHTML += '<img onclick="open_modal('+element['picture_id']+')" src="/'+element['picture_path']+'">'
   else if(i == 2)
-    col2.innerHTML += '<img src="/'+element['picture_path']+'">'
+    col2.innerHTML += '<img onclick="open_modal('+element['picture_id']+')" src="/'+element['picture_path']+'">'
   else if(i == 3)
-    col3.innerHTML += '<img src="/'+element['picture_path']+'">'
+    col3.innerHTML += '<img onclick="open_modal('+element['picture_id']+')" src="/'+element['picture_path']+'">'
   else if(i == 4)
-    col4.innerHTML += '<img src="/'+element['picture_path']+'">'
+    col4.innerHTML += '<img onclick="open_modal('+element['picture_id']+')" src="/'+element['picture_path']+'">'
   if (i == 4)
     i = 0;
 });

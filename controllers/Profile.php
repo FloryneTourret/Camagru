@@ -35,6 +35,10 @@ Class Profile extends Controller{
         $data = array();
         
         $data['image'] = $this->Profile_model->get_image($id);
+        if(isset($_GET['like']) && $_GET['like'] == true)
+            $this->Profile_model->like_image($id, $_SESSION['user']['user_id']);
+        if(isset($_GET['unlike']) && $_GET['unlike'] == true)
+            $this->Profile_model->unlike_image($id, $_SESSION['user']['user_id']);
         if (empty($data['image']))
         {
             $data['error'] = "L'image que vous recherchez n'existe pas.";
@@ -47,10 +51,7 @@ Class Profile extends Controller{
         {
             $data['comments'] = $this->Profile_model->get_comments($id);
             $data['likes'] = $this->Profile_model->get_likes($id);
-            $this->loadView('Base/header_view');
-            $this->loadView('Base/navbar_view');
             $this->loadView('Profile/picture_view', $data);
-            $this->loadView('Base/footer_view');
         }
     }
 }
