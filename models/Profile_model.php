@@ -10,7 +10,7 @@ Class Profile_model extends Model
     }
 
     public function get_pictures($id){
-        $req = $this->db->prepare("SELECT * from `pictures` WHERE `picture_user_id` = '$id'");
+        $req = $this->db->prepare("SELECT * from `pictures` WHERE `picture_user_id` = '$id' ORDER BY `picture_id` DESC");
         $req->execute();
         return ($req->fetchAll());
     }
