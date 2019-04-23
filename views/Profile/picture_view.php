@@ -30,12 +30,14 @@ foreach ($likes as $like)
             $i = 0;
             foreach($likes as $like) {
                 $i++;
-                if($i < 4 && $i < $image['likes_count'])
+                if($i < 3 && $i < $image['likes_count'])
                     echo '<span>'.$like['login'].', </span>';
-                else if ($i < 4 && $i == $image['likes_count'])
+                else if ($i < 3 && $i == $image['likes_count'])
                     echo '<span>'.$like['login'].'</span>';
-                else if($i == 5 && $i < $image['likes_count'])
-                    echo '<span>'.$like['login'].'...</span>';
+                else if($i == 3 && $i < $image['likes_count'])
+                    echo '<span>'.$like['login'].' et '.($image['likes_count'] - 3).(($image['likes_count'] - 3) == 1 ?' autre personne' : ' autres personnes').'</span>';
+                else if($i == 3 && $i == $image['likes_count'])
+                    echo '<span>'.$like['login'].'</span>';
             }
             ?>
         </div>
