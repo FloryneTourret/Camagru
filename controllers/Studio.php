@@ -38,6 +38,17 @@ Class Studio extends Controller{
                     $data['error'] = 'Le fichier renseigné n\'est pas une image';
             }
         }
+        if (!empty($_POST['snap-img']))
+        {
+            $target_dir = '/var/www/html/assets/upload/'.$_SESSION['user']['login'].'/';
+            $name = bin2hex(openssl_random_pseudo_bytes(8));
+            while (file_exists('/var/www/html/assets/upload'.$_SESSION['user']['login'].'/'.$name))
+                $name = bin2hex(openssl_random_pseudo_bytes(8));
+            $ext = 'png';
+            file_put_contents($target_dir.'/'.$name.'.'.$ext, file_get_contents($_POST['snap-img']));
+            $target = 'assets/upload/'.$_SESSION['user']['login'].'/'.$name.'.'.$ext;
+            $this->Studio_model->addimg($target, $_SESSION['user']['user_id']);
+        }
         
         $this->loadModel('Studio_model');
         $this->loadView('Base/header_view');

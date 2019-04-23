@@ -164,3 +164,26 @@ input:checked + .slider:before {
         max-width: 100%;
     }
 }
+
+img#output
+{
+    width: 100%;
+}
+
+#videoElement {
+	width: 100%;
+	height: auto;
+    background-color: #666;
+}
+
+#myCanvas {
+    display: none;
+}
+
+#uploadform {
+    display: none;
+}
+
+#snap-form {
+    display: none;
+}
