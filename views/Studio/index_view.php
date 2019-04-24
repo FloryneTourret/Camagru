@@ -26,10 +26,17 @@
             <img id="snap-output" src="">
             <input type="hidden" id="snap-img" name="snap-img">
         </div>
+
         <div class="field">
             <label class="label">Description<i class="fas fa-info-circle" id="info"></i></label>
             <input class="input" type="text" name="desc-img" placeholder="Decrivez votre photo" required>
         </div>
+
+        <div class="field">
+        <label class="label">Filtre<i class="fas fa-info-circle" id="info"></i></label>
+            
+        </div>
+
         <div class="field">
             <button class="button is-small is-fullwidth is-primary" type="submit">Envoyer la photo</button>
         </div>

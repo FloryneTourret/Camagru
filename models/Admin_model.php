@@ -31,6 +31,12 @@ Class Admin_model extends Model
         $req->execute();
     }
 
+    public function addfilter($path, $title)
+    {
+        $req = $this->db->prepare("INSERT INTO `filters`(`filter_name`, `filter_path`) VALUES ('$title','$path')");
+        $req->execute();
+    }
+
 }
 
 ?>

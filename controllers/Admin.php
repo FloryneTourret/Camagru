@@ -59,6 +59,43 @@ Class Admin extends Controller{
                 $data['error'] = "Une erreur est survenue.";
         }
 
+        if (!empty($_FILES) && !empty($_POST['filter_title']))
+        {
+            $title = htmlspecialchars(addslashes($_POST['filter_title']));
+            if ($_FILES['newfilter']['type'] == 'image/jpeg' || $_FILES['newfilter']['type'] == 'image/png'
+                    || $_FILES['newfilter']['type'] == 'image/jpg')
+            {
+
+                $check = getimagesize($_FILES['newfilter']['tmp_name']);
+                if ($check !== false)
+                    $upload = 1;
+                else
+                    $upload = 0;
+                if ($upload == 1)
+                {
+                    $dir = '/var/www/html/assets/upload/';
+                    if (!file_exists($dir . 'filter')) {
+                        mkdir($dir . 'filter', 0777, true);
+                    }
+                    $target_dir = '/var/www/html/assets/upload/filter/';
+                    $name = bin2hex(openssl_random_pseudo_bytes(8));
+                    while (file_exists('/var/www/html/assets/upload/filter'.'/'.$name))
+                        $name = bin2hex(openssl_random_pseudo_bytes(8));
+                    if ($_FILES['newfilter']['type'] == 'image/png')
+                        $name = $name.'.png';
+                    else if ($_FILES['newfilter']['type'] == 'image/jpeg')
+                        $name = $name.'.jpg';
+                    $target_file = $target_dir . $name;
+                    move_uploaded_file($_FILES['newfilter']['tmp_name'], $target_file);
+                    $target = 'assets/upload/filter/'.$name;
+                    $this->Admin_model->addfilter($target, $title);
+                    $data['success'] = "Le filtre a bien été ajouté.";
+                }
+                else
+                    $data['error'] = 'Le fichier renseigné n\'est pas une image';
+            }
+        }
+
         $this->loadView('Base/header_view');
         $this->loadView('Base/navbar_view');
         $this->loadView('Admin/index_view', $data);

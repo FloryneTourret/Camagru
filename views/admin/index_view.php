@@ -19,6 +19,8 @@
                 <ul class="menu-list">
                     <li><a onclick="display_users()" id="display_users">Gérer les utilisateurs</a></li>
                     <li><a onclick="display_admin()" id="display_admin">Ajouter un administrateur</a></li>
+                    <li><a onclick="display_filters()" id="display_filters">Ajouter un filtre</a></li>
+                    <li><a onclick="display_manage_filters()" id="display_manage_filters">Gérer les filtres</a></li>
                 </ul>
             </aside>
         </div>
@@ -144,6 +146,44 @@
                         </div>
                     </form>
                 </div>
+            </div>
+            <div class="container-admin" id="filters">
+                <form action="/index.php/Admin" method="post" class="column is-three-quarters" enctype="multipart/form-data" class="form_upload">
+                    <div class="field">
+                        <label class="label">Nom du filtre</label>
+                        <div class="control">
+                        <p class="control has-icons-left">
+                            <input class="input" type="text" name="filter_title" placeholder="Nom du filtre" required>
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                        </p>
+                        </div>
+                    </div>
+
+                    <div class="file has-name">
+                        <label class="file-label">
+                        <input class="file-input" id="filter_upload" onchange="name_input();" type="file" name="newfilter" accept="image/*">
+                            <span class="file-cta">
+                            <span class="file-icon">
+                                <i class="fas fa-upload"></i>
+                            </span>
+                            <span class="file-label">
+                                Séléctionner un fichier
+                            </span>
+                            </span>
+                            <span class="file-name" id="file_output">
+                                Aucun fichier sélectionné
+                            </span>
+                        </label>
+                    </div>
+                    <div class="field">
+                        <button class="button is-small is-fullwidth is-primary" type="submit">Charger la photo</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="manage_filters">
             </div>
 
         </div>
