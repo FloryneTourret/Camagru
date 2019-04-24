@@ -12,9 +12,11 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
+    <?php if (isset($_SESSION['user'])){?>
       <a class="navbar-item" href="/index.php/Studio">
           <img src="/assets/img/filter.png" width="auto" height="28">
       </a>
+    <?php } ?>
     </div>
 
     <div class="navbar-end">
