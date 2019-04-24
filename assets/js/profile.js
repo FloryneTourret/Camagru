@@ -186,5 +186,4 @@ function comment(id)
 		xhttp.open("GET", '/index.php/Profile/picture/' + id + '?comment=' + comment, true);
 		xhttp.send();
 	}
-	
 }
