@@ -60,10 +60,6 @@ ul.modal_list li{
     width: 100%;
     margin-bottom: 1vh;
     height: auto;
-    -moz-box-shadow: 10px 10px 20px #9e9d9d;
-    -webkit-box-shadow: 10px 10px 20px #9e9d9d;
-    -o-box-shadow: 10px 10px 20px #9e9d9d;
-    box-shadow: 10px 10px 20px #9e9d9d;
 }
 .content_picture{
     width: 80%;
@@ -74,7 +70,6 @@ ul.modal_list li{
     height: 80%;
     margin-top: 8%;
     background-color: #F5F5F5;
-    border-radius: 2%;
     overflow-x: hidden;
 }
 #picture_modal::-webkit-scrollbar { 

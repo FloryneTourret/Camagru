@@ -28,6 +28,11 @@
     ?>
     <div class="columns">
         <div class="column">
+        <div class="columns">
+            <div class="column">
+                <p class="is-size-5"><?php echo $image['picture_desc']; ?></p>
+            </div>
+        </div>
             <div class="columns">
                 <div class="column is-half">
                     <div id="likes">
