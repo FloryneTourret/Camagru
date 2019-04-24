@@ -1,5 +1,7 @@
 canvas = document.getElementById("myCanvas");
 ctx = canvas.getContext('2d');
+check = 0;
+check2 = 0;
 
 function basename(path) {
     return path.replace(/\\/g,'/').replace( /.*\//, '' );
@@ -16,6 +18,12 @@ var loadFile = function(event) {
 
 function showtakepicture()
 {
+    var cc = document.getElementById('snapform');
+    cc.style.display = "block";
+    var kk = document.getElementById('uploadform');
+    var bb = document.getElementById('preview-upload');
+    bb.style.display = "none";
+    kk.style.display = "none";
     var check = document.getElementById('snap-img');
     if (check.value == '')
     {
@@ -32,15 +40,35 @@ function showtakepicture()
             video.srcObject = stream;
             })
             .catch(function (err0r) {
-            console.log("Something went wrong!");
             });
         }
     }
 }
 
+function fillinput(path)
+{
+    var el = document.getElementById('filter_path_up');
+    if (path != 'none')
+        el.value = '/'+path;
+    else
+        el.value = "none";
+}
+
+function fillinput2(path)
+{
+    var el = document.getElementById('filter-snap');
+    if (path != 'none')
+        el.value = '/'+path;
+    else
+        el.value = "none";
+}
+
 function showupload()
 {
-    var video = document.getElementById('videoElement');
+    var cc = document.getElementById('snapform');
+    cc.style.display = "none";
+    document.getElementById('preview-upload').style.display = "block";
+    var video = document.getElementById('snapping');
     video.style.display = "none";
     var uploadform = document.getElementById('uploadform');
     uploadform.style.display = "block";

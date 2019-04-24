@@ -7,8 +7,10 @@ Class Studio extends Controller{
             header('Location: /');
         $this->loadModel('Studio_model');
         $data = array();
-        if (!empty($_FILES))
+        $data['filters'] = $this->Studio_model->get_filters();
+        if (!empty($_FILES) && !empty($_POST['desc-img-up']) && !empty($_POST['filter']))
         {
+            $desc = htmlspecialchars(addslashes($_POST['desc-img-up']));
             if ($_FILES['newimg']['type'] == 'image/jpeg' || $_FILES['newimg']['type'] == 'image/png'
                     || $_FILES['newimg']['type'] == 'image/jpg')
             {
@@ -28,31 +30,57 @@ Class Studio extends Controller{
                     while (file_exists('/var/www/html/assets/upload'.$_SESSION['user']['login'].'/'.$name))
                         $name = bin2hex(openssl_random_pseudo_bytes(8));
                     if ($_FILES['newimg']['type'] == 'image/png')
+                    {
+                        $dest = imagecreatefrompng($_FILES['newimg']['tmp_name']);
                         $name = $name.'.png';
+                    }
                     else if ($_FILES['newimg']['type'] == 'image/jpeg')
+                    {
                         $name = $name.'.jpg';
+                        $dest = imagecreatefromjpeg($_FILES['newimg']['tmp_name']);
+                    }
+                    $ext = substr($_POST['filter'], -3);
+                    if ($ext == "png")
+                        $src = imagecreatefrompng(ROOT . $_POST['filter']);
+                    else
+                        $src = imagecreatefromjpeg(ROOT . $_POST['filter']);
+                    $srcpath = ROOT . $_POST['filter'];
                     $target_file = $target_dir . $name;
-                    move_uploaded_file($_FILES['newimg']['tmp_name'], $target_file);
+                    imagecopy($dest, $src, 0, 0, 0, 0, getimagesize($srcpath)[0], getimagesize($srcpath)[1]);
+                    imagejpeg($dest, $target_file);
+                    imagedestroy($dest);
+                    imagedestroy($src);
                     $target = 'assets/upload/'.$_SESSION['user']['login'].'/'.$name;
-                    $this->Studio_model->addimg($target, $_SESSION['user']['user_id']);
+                    $this->Studio_model->addimg($target, $_SESSION['user']['user_id'], $desc);
                 }
                 else
                     $data['error'] = 'Le fichier renseigné n\'est pas une image';
             }
         }
-        if (!empty($_POST['snap-img']) && !empty($_POST['desc-img']))
+        if (!empty($_POST['snap-img']) && !empty($_POST['desc-img']) && !empty($_POST['filter-snap']))
         {
+            $filter = htmlspecialchars(addslashes($_POST['filter-snap']));
             $desc = htmlspecialchars(addslashes($_POST['desc-img']));
             $target_dir = '/var/www/html/assets/upload/'.$_SESSION['user']['login'].'/';
             $name = bin2hex(openssl_random_pseudo_bytes(8));
             while (file_exists('/var/www/html/assets/upload'.$_SESSION['user']['login'].'/'.$name))
                 $name = bin2hex(openssl_random_pseudo_bytes(8));
             $ext = 'png';
-            file_put_contents($target_dir.'/'.$name.'.'.$ext, file_get_contents($_POST['snap-img']));
+            $verif = substr($filter, -3);
+            if ($verif == "jpg")
+                $src = imagecreatefromjpeg(ROOT . $filter);
+            else
+                $src = imagecreatefrompng(ROOT . $filter);
+            $srcpath = ROOT . $filter;
+            $dest = imagecreatefrompng($_POST['snap-img']);
+            imagecopy($dest, $src, 0, 0, 0, 0, getimagesize($srcpath)[0], getimagesize($srcpath)[1]);
+            imagejpeg($dest, $target_dir.'/'.$name.'.'.$ext);
+            imagedestroy($dest);
+            imagedestroy($src);
             $target = 'assets/upload/'.$_SESSION['user']['login'].'/'.$name.'.'.$ext;
             $this->Studio_model->addimg($target, $_SESSION['user']['user_id'], $desc);
         }
-        
+
         $this->loadModel('Studio_model');
         $this->loadView('Base/header_view');
         $this->loadView('Base/navbar_view');

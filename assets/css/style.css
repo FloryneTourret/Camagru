@@ -182,3 +182,13 @@ img#output
 #snap-form {
     display: none;
 }
+
+#container-filters img {
+    width: 60px;
+    margin: 5px;
+}
+
+#list-filters img {
+    width: 60px;
+    margin: 5px;
+}

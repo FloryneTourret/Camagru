@@ -7,7 +7,7 @@
     </div>
     <button onclick="snapshot();">Take Snapshot</button> 
 </div>
-
+<!-- Preview upload -->
 <div class="columns" id="preview-upload">
     <div id="img-output" class="column is-4 is-offset-4">
         <img id="output">
@@ -34,10 +34,12 @@
 
         <div class="field">
         <label class="label">Filtre<i class="fas fa-info-circle" id="info"></i></label>
-            
+            <div id="list-filters">
+            </div>
         </div>
 
         <div class="field">
+            <input type="hidden" name="filter-snap" id="filter-snap">
             <button class="button is-small is-fullwidth is-primary" type="submit">Envoyer la photo</button>
         </div>
     </form>
@@ -48,6 +50,16 @@
 <!-- Upload form -->
     <div class="column is-half is-offset-one-quarter" id="uploadform">
         <form action="/index.php/Studio" method="post" enctype="multipart/form-data" class="form_upload">
+
+            <!-- filter container -->
+            <div id="container-filters">
+            </div>
+
+            <div class="field">
+                <label class="label">Description<i class="fas fa-info-circle" id="info"></i></label>
+                <input class="input" type="text" name="desc-img-up" placeholder="Decrivez votre photo" required>
+            </div>
+
             <div class="file has-name">
                 <label class="file-label">
                 <input class="file-input" id="file_upload" onchange="name_input();loadFile(event);" type="file" name="newimg" id="newimg" accept="image/*">
@@ -65,6 +77,7 @@
                 </label>
             </div>
             <div class="field">
+                <input type="hidden" name="filter" id="filter_path_up">
                 <button class="button is-small is-fullwidth is-primary" type="submit">Charger la photo</button>
             </div>
         </form>
@@ -73,3 +86,51 @@
 </div>
 
 <script src="/assets/js/studio.js"></script>
+<script>
+
+function updatefilter()
+{
+    $prev = document.getElementById('output').src;
+    if($prev != '' && check == 0)
+    {
+        container = document.getElementById('container-filters');
+        check = 1;
+        var filters = <?php echo json_encode($filters); ?>;
+        filters.forEach(function(element) {
+            var img = document.createElement('img');
+            img.src = '/'+element['filter_path'];
+            img.setAttribute('onclick', "fillinput('"+element['filter_path']+"')");
+            container.appendChild(img);
+        });
+        var img = document.createElement('img');
+        img.src = '/assets/img/none.png';
+        img.setAttribute('onclick', "fillinput('none')");
+        container.appendChild(img);
+    }
+}
+
+function updatefilter2()
+{
+    $prev = document.getElementById('snap-output').src;
+    if($prev != '' && check2 == 0)
+    {
+        container = document.getElementById('list-filters');
+        check2 = 1;
+        var filters = <?php echo json_encode($filters); ?>;
+        filters.forEach(function(element) {
+            var img = document.createElement('img');
+            img.src = '/'+element['filter_path'];
+            img.setAttribute('onclick', "fillinput2('"+element['filter_path']+"')");
+            container.appendChild(img);
+        });
+        var img = document.createElement('img');
+        img.src = '/assets/img/none.png';
+        img.setAttribute('onclick', "fillinput2('none')");
+        container.appendChild(img);
+    }
+}
+
+setInterval(updatefilter, 1000);
+setInterval(updatefilter2, 1000);
+
+</script>
