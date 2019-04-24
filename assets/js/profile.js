@@ -94,7 +94,6 @@ function close_modal(){
 
 function open_modal(id){
     load("/index.php/Profile/picture/" + id, document.getElementById("picture_modal"));
-
     document.getElementById("modal").classList.add("is-active");
     document.body.classList.add("is-clipped");
 }
@@ -190,4 +189,20 @@ function comment(id)
 		xhttp.open("GET", '/index.php/Profile/picture/' + id + '?comment=' + comment, true);
 		xhttp.send();
 	}
+}
+
+function key_comment(event, id)
+{
+	key = event.keyCode;
+	textarea = document.getElementById('comment_content');
+	button = document.getElementById('button_comment');
+	if(textarea.value != '')
+	{
+		if(key == 91)
+			comment(id);
+		
+		button.disabled = false;
+	}
+	else
+		button.disabled = true;
 }
