@@ -16,21 +16,25 @@ var loadFile = function(event) {
 
 function showtakepicture()
 {
-    var uploadform = document.getElementById('uploadform');
-    uploadform.style.display = "none";
-    var previewup = document.getElementById('preview-upload');
-    previewup.style.display = "none";
-    var video = document.querySelector("#videoElement");
-    var container = document.getElementById('snapping');
-    container.style.display = "block";
-    if (navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia({ video: true })
-        .then(function (stream) {
-        video.srcObject = stream;
-        })
-        .catch(function (err0r) {
-        console.log("Something went wrong!");
-        });
+    var check = document.getElementById('snap-img');
+    if (check.value == '')
+    {
+        var uploadform = document.getElementById('uploadform');
+        uploadform.style.display = "none";
+        var previewup = document.getElementById('preview-upload');
+        previewup.style.display = "none";
+        var video = document.querySelector("#videoElement");
+        var container = document.getElementById('snapping');
+        container.style.display = "block";
+        if (navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+            video.srcObject = stream;
+            })
+            .catch(function (err0r) {
+            console.log("Something went wrong!");
+            });
+        }
     }
 }
 

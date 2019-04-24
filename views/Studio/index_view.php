@@ -19,16 +19,26 @@
 
 <div class="columns">
 
+<!-- Snap form -->
+<div class="column is-half is-offset-one-quarter" id="snapform">
     <form action="/index.php/Studio" method="post" id="snap-form">
         <div id="img-from-snap" class="has-text-centered">
             <img id="snap-output" src="">
             <input type="hidden" id="snap-img" name="snap-img">
         </div>
         <div class="field">
+            <label class="label">Description<i class="fas fa-info-circle" id="info"></i></label>
+            <input class="input" type="text" name="desc-img" placeholder="Decrivez votre photo" required>
+        </div>
+        <div class="field">
             <button class="button is-small is-fullwidth is-primary" type="submit">Envoyer la photo</button>
         </div>
     </form>
+</div>
+</div>
 
+<div class="columns">
+<!-- Upload form -->
     <div class="column is-half is-offset-one-quarter" id="uploadform">
         <form action="/index.php/Studio" method="post" enctype="multipart/form-data" class="form_upload">
             <div class="file has-name">
