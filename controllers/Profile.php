@@ -46,6 +46,11 @@ Class Profile extends Controller{
         {
             $comment = trim(htmlspecialchars(addslashes($_GET['comment'])));
             $this->Profile_model->comment_image($id, $_SESSION['user']['user_id'], $comment);
+            if($data['image']['notif'] == 1)
+            {
+                $message = "Bonjour ".$data['image']['login']."\r\nVous avez recçu un commentaire sur l'une de vos images.\r\n";
+                mail($data['image']['email'], 'Camagru - Commentaire', $message);
+            }
         }
         $data['image'] = $this->Profile_model->get_image($id);
         if (empty($data['image']))
