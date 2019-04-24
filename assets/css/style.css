@@ -52,7 +52,7 @@ ul.modal_list li{
     line-height: 64px;
     vertical-align: middle;
 }
-.like, #delete{
+.like, #delete, .delete_filter{
     cursor: pointer;
 }
 .picture{
