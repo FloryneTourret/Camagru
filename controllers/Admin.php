@@ -12,10 +12,15 @@ Class Admin extends Controller{
         $this->loadModel('Admin_model');
         $this->loadModel('Register_model');
         $data['users'] = $this->Admin_model->get_users();
+        $data['filters'] = $this->Admin_model->get_filters();
 
         if(isset($_GET['ban']) && is_numeric($_GET['ban']))
         {
             $this->Admin_model->ban_users($_GET['ban']);
+        }
+        if(isset($_GET['del_filter']) && is_numeric($_GET['del_filter']))
+        {
+            $this->Admin_model->del_filter($_GET['del_filter']);
         }
         if(isset($_GET['unban']) && is_numeric($_GET['unban']))
         {
@@ -90,6 +95,7 @@ Class Admin extends Controller{
                     $target = 'assets/upload/filter/'.$name;
                     $this->Admin_model->addfilter($target, $title);
                     $data['success'] = "Le filtre a bien été ajouté.";
+                    header('Location: /index.php/Admin');
                 }
                 else
                     $data['error'] = 'Le fichier renseigné n\'est pas une image';

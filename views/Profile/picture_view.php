@@ -23,8 +23,9 @@
     <?php 
     $liked = 0;
     foreach ($likes as $like)
-        if($like['login'] == $_SESSION['user']['login'])
-            $liked = 1;
+        if(isset($_SESSION['user']))
+            if($like['login'] == $_SESSION['user']['login'])
+                $liked = 1;
     ?>
     <div class="columns">
         <div class="column">
@@ -38,8 +39,10 @@
                     <div id="likes">
                     <?php if ($liked == 1) { ?>
                         <span class="has-text-danger is-size-5 like" id="unlike" onclick="unlike(<?php echo $image['picture_id']; ?>)"><i class="fas fa-heart"></i><?php echo $image['likes_count']; ?></span>
-                    <?php }else{ ?>
+                    <?php }else if(isset($_SESSION['user'])){ ?>
                         <span class="has-text-danger is-size-5 like" id="like" onclick="like(<?php echo $image['picture_id']; ?>)"><i class="far fa-heart"></i><?php echo $image['likes_count']; ?></span>
+                    <?php }else{ ?>
+                        <span class="has-text-danger is-size-5 like" id="like"><i class="far fa-heart"></i><?php echo $image['likes_count']; ?></span>
                     <?php } ?>
                     </div>
                     <?php 
@@ -66,7 +69,6 @@
             </div>
         </div>
     </div>
-
     <div class="columns">
         <div class="column">
 
@@ -97,6 +99,7 @@
                 </article>
             <?php } ?>
 
+            <?php if(isset($_SESSION['user'])){?>
                 <article class="media">
                 <figure class="media-left">
                     <p>
@@ -121,6 +124,7 @@
                     </div>
                 </div>
             </article>
+        <?php } ?>
 
         </div>
     </div>

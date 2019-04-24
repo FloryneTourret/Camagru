@@ -183,7 +183,70 @@
                 </form>
             </div>
 
-            <div id="manage_filters">
+            <div id="manage_filters" class="column is-three-quarters">
+                <?php $i = 0; 
+                
+                foreach ($filters as $filter)
+                {
+                    if ($i % 2 == 0){
+                ?>
+                <div class="columns">
+                    <div class="column is-half">
+                        <div class="card">
+                            <div class="card-image is-4by3">
+                                <div style='background-image: url("/<?php echo $filter['filter_path'] ?>"); background-size: contain; background-repeat: no-repeat; background-position: 50% 50%; height: 200px; width: auto;'></div>
+                            </div>
+                            <hr>
+                            <div class="card-content">
+                                <div class="content">
+                                    <div class="columns">
+                                        <div class="column is-half">
+                                            <p><?php echo $filter['filter_name'] ?></p>
+                                        </div>
+                                        <div class="column is-half has-text-right">
+                                            <span class="has-text-danger delete_filter" onclick="delete_filter(<?php echo $filter['filter_id'] ?>)"><i class="fas fa-trash"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php 
+                    }
+                    else{
+                ?>
+                    <div class="column is-half">
+                        <div class="card">
+                            <div class="card-image">
+                                <div style='background-image: url("/<?php echo $filter['filter_path'] ?>"); background-size: contain; background-repeat: no-repeat; background-position: 50% 50%; height: 200px; width: auto;'></div>
+                            </div>
+                            <hr>
+                            <div class="card-content">
+                                <div class="content">
+                                <div class="columns">
+                                        <div class="column is-half">
+                                            <p><?php echo $filter['filter_name'] ?></p>
+                                        </div>
+                                        <div class="column is-half has-text-right">
+                                            <span class="has-text-danger delete_filter" onclick="delete_filter(<?php echo $filter['filter_id'] ?>)"><i class="fas fa-trash"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+                    }
+                    $i++;
+                }
+                if(count($filters) % 2 != 0){
+                ?>
+                </div>
+                <?php
+                }
+                ?>
+                
             </div>
 
         </div>

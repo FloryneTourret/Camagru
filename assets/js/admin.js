@@ -60,11 +60,10 @@ function basename(path) {
 }
 
 function ban(id, enabled, admin){
-    const req = new XMLHttpRequest();
-    req.open('GET', '/index.php/Admin?ban=' + id, true); 
-    req.send(null);
-
     if ( confirm( "Bannir l'utilisateur ?" ) ) {
+        const req = new XMLHttpRequest();
+        req.open('GET', '/index.php/Admin?ban=' + id, true); 
+        req.send(null);
         document.getElementById('name_'+id).classList.remove("has-text-primary");
         document.getElementById('name_'+id).classList.remove("has-text-danger");
         document.getElementById('name_'+id).classList.remove("has-text-warning");
@@ -76,10 +75,10 @@ function ban(id, enabled, admin){
 }
 
 function unban(id, enabled, admin){
-    const req = new XMLHttpRequest();
-    req.open('GET', '/index.php/Admin?unban=' + id, true); 
-    req.send(null);
     if ( confirm( "Autoriser l'utilisateur ?" ) ) {
+        const req = new XMLHttpRequest();
+        req.open('GET', '/index.php/Admin?unban=' + id, true); 
+        req.send(null);
         document.getElementById('name_'+id).classList.remove("has-text-danger");
         if(admin == 1)
             document.getElementById('name_'+id).classList.add("has-text-primary");
@@ -90,5 +89,18 @@ function unban(id, enabled, admin){
         else if (enabled == 1)
             document.getElementById('name_'+id).classList.add("has-text-grey-dark");
             document.getElementById('button_'+id).innerHTML = '<button class="button is-small is-danger" onclick="ban(\''+ id +'\' , \''+ enabled +'\' , \''+ admin +'\')">Bannir l\'utilisateur</button>';
+    }
+}
+
+function delete_filter(id){
+    if ( confirm( "Supprimer ce filtre ? Cette action est irreversible." ) ) {
+        const req = new XMLHttpRequest();
+        req.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {  
+                document.location.reload()
+            }
+            };
+        req.open('GET', '/index.php/Admin?del_filter=' + id, true); 
+        req.send(null);
     }
 }

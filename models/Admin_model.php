@@ -8,6 +8,12 @@ Class Admin_model extends Model
         return ($req->fetchAll());
     }
 
+    public function get_filters(){
+        $req = $this->db->prepare("SELECT * FROM `filters` WHERE 1 ORDER BY `filter_id` DESC");
+        $req->execute();
+        return ($req->fetchAll());
+    }
+
     public function ban_users($id){
         $req = $this->db->prepare("UPDATE `users` SET `enabled`= -1 WHERE `user_id` = $id");
         $req->execute();
@@ -15,6 +21,11 @@ Class Admin_model extends Model
 
     public function unban_users($id){
         $req = $this->db->prepare("UPDATE `users` SET `enabled`= 1 WHERE `user_id` = $id");
+        $req->execute();
+    }
+
+    public function del_filter($id){
+        $req = $this->db->prepare("DELETE FROM `filters` WHERE `filter_id` =$id");
         $req->execute();
     }
 
