@@ -151,10 +151,14 @@ function unlike(id){
 
 function delete_picture(id){
 	if ( confirm( "Êtes vous sur de vouloir supprimer cette image ? Cette action est irreversible." ) ) {
-		req = new XMLHttpRequest();
-		req.open("GET", '/index.php/Profile/picture/' + id + '?delete=true', true);
-		req.send(null);
-		document.location.reload();
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			document.location.reload();
+		}
+		};
+		xhttp.open("GET", '/index.php/Profile/picture/' + id + '?delete=true', true);
+		xhttp.send();
 	}
 }
 
