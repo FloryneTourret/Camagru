@@ -99,18 +99,54 @@ function open_modal(id){
     document.body.classList.add("is-clipped");
 }
 
-function like(likes, id){
-	req = new XMLHttpRequest();
-	req.open("GET", '/index.php/Profile/picture/' + id + '?like=true', true);
-    req.send(null); 
-	document.getElementById('likes').innerHTML = '<span class="has-text-danger is-size-5 like" id="unlike" onclick="unlike('+ (likes + 1) +', '+ id +')"><i class="fas fa-heart"></i>'+ (likes + 1) +'</span>';
+function like(id){
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+	if (this.readyState == 4 && this.status == 200) {
+		element = document.getElementById("picture_modal");
+		element.innerHTML = this.responseText;
+		var now = new Date(Date.now()).getTime();
+		var offset = new Date(Date.now()).getTimezoneOffset();
+
+		var timestamp = element.getElementsByClassName("timestamp");
+		for (var i = 0; i < timestamp.length; i++) {
+			var date = timestamp[i].innerHTML;
+
+			var t = date.split(/[- :]/);
+			var d = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));
+			d = d.getTime();
+
+			timestamp[i].innerHTML = timeDifference(now, d, offset);
+		}
+	}
+	};
+	xhttp.open("GET", '/index.php/Profile/picture/' + id + '?like=true', true);
+	xhttp.send();
 }
 
-function unlike(likes, id){
-	req = new XMLHttpRequest();
-	req.open("GET", '/index.php/Profile/picture/' + id + '?unlike=true', true);
-    req.send(null); 
-	document.getElementById('likes').innerHTML = '<span class="has-text-danger is-size-5 like" id="like" onclick="like('+ (likes - 1) +', '+ id +')"><i class="far fa-heart"></i>'+ (likes - 1) +'</span>';
+function unlike(id){
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+	if (this.readyState == 4 && this.status == 200) {
+		element = document.getElementById("picture_modal");
+		element.innerHTML = this.responseText;
+		var now = new Date(Date.now()).getTime();
+		var offset = new Date(Date.now()).getTimezoneOffset();
+
+		var timestamp = element.getElementsByClassName("timestamp");
+		for (var i = 0; i < timestamp.length; i++) {
+			var date = timestamp[i].innerHTML;
+
+			var t = date.split(/[- :]/);
+			var d = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));
+			d = d.getTime();
+
+			timestamp[i].innerHTML = timeDifference(now, d, offset);
+		}
+	}
+	};
+	xhttp.open("GET", '/index.php/Profile/picture/' + id + '?unlike=true', true);
+	xhttp.send();
 }
 
 function delete_picture(id){
@@ -127,10 +163,28 @@ function comment(id)
 	var comment = encodeURIComponent(document.getElementById('comment_content').value.trim());
 	if(comment!= '')
 	{
-		req = new XMLHttpRequest();
-		req.open("GET", '/index.php/Profile/picture/' + id + '?comment=' + comment, true);
-		req.send(null);
-		load("/index.php/Profile/picture/" + id, document.getElementById("picture_modal"));
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			element = document.getElementById("picture_modal");
+			element.innerHTML = this.responseText;
+			var now = new Date(Date.now()).getTime();
+			var offset = new Date(Date.now()).getTimezoneOffset();
+
+			var timestamp = element.getElementsByClassName("timestamp");
+			for (var i = 0; i < timestamp.length; i++) {
+				var date = timestamp[i].innerHTML;
+
+				var t = date.split(/[- :]/);
+				var d = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));
+				d = d.getTime();
+
+				timestamp[i].innerHTML = timeDifference(now, d, offset);
+			}
+		}
+		};
+		xhttp.open("GET", '/index.php/Profile/picture/' + id + '?comment=' + comment, true);
+		xhttp.send();
 	}
 	
 }

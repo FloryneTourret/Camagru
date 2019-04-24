@@ -34,7 +34,6 @@ Class Profile extends Controller{
         $this->loadModel('Profile_model');
         $data = array();
         
-        $data['image'] = $this->Profile_model->get_image($id);
         if(isset($_GET['like']) && $_GET['like'] == true)
             $this->Profile_model->like_image($id, $_SESSION['user']['user_id']);
         if(isset($_GET['unlike']) && $_GET['unlike'] == true)
@@ -47,6 +46,7 @@ Class Profile extends Controller{
             $comment = trim(htmlspecialchars(addslashes($_GET['comment'])));
             $this->Profile_model->comment_image($id, $_SESSION['user']['user_id'], $comment);
         }
+        $data['image'] = $this->Profile_model->get_image($id);
         if (empty($data['image']))
         {
             $data['error'] = "L'image que vous recherchez n'existe pas.";
