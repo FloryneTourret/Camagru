@@ -8,8 +8,6 @@ Class Studio extends Controller{
         $this->loadModel('Studio_model');
         $data = array();
         $data['filters'] = $this->Studio_model->get_filters();
-        var_dump($_POST);
-        var_dump($_FILES);
         if (!empty($_FILES) && !empty($_POST['desc-img-up']) && !empty($_POST['filter']))
         {
             $desc = htmlspecialchars(addslashes($_POST['desc-img-up']));

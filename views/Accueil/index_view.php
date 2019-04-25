@@ -15,7 +15,7 @@
     <div class="columns accueil_picture">
     <div class="card column is-three-fifths is-offset-one-fifth">
         <div class="card-image">
-            <div onclick="open_modal(<?php echo $picture['picture_id']?>)" style='cursor: pointer; background-image: url("/<?php echo $picture['picture_path'];?>"); background-size: cover; background-position: 50% 50%; height:40vh; width: 100%;'></div>
+            <img onclick="open_modal(<?php echo $picture['picture_id']?>)" style="cursor: pointer; width: 100%; height: auto;" src="/<?php echo $picture['picture_path'];?>">
         </div>
         <div class="card-content">
             <div class="media">
