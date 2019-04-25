@@ -17,8 +17,8 @@
     </div>
 
     <div class="buttons-list">
-        <button class="button" onclick="snapshot();">Take Snapshot</button>
-        <button class="button" onclick="showupload();">Upload une photo</button>
+        <button class="button" onclick="snapshot();">Prendre la photo</button>
+        <button class="button" onclick="showupload();">Uploader une photo</button>
     </div>
 
     <!-- Filter list -->
