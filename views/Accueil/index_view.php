@@ -4,7 +4,11 @@
     <nav class="pagination is-rounded pagination-top" role="navigation" aria-label="pagination">
         <ul class="pagination-list">
             <?php while ($i <= $nb_pages){?>
-                <li><a class="pagination-link" aria-label="Goto page 1" href="/index.php/Accueil/<?php echo $i ?>"><?php echo $i ?></a></li>
+                <?php if($i == $page){ ?>
+                    <li><a class="pagination-link is-current" aria-label="Goto page 1" href="/index.php/Accueil/<?php echo $i ?>"><?php echo $i ?></a></li>
+                <?php } else{ ?>
+                    <li><a class="pagination-link" aria-label="Goto page 1" href="/index.php/Accueil/<?php echo $i ?>"><?php echo $i ?></a></li>
+                <?php } ?>
             <?php $i++; }?>
         </ul>
     </nav>
@@ -56,7 +60,11 @@
     <nav class="pagination is-rounded" role="navigation" aria-label="pagination">
         <ul class="pagination-list">
             <?php while ($i <= $nb_pages){?>
-                <li><a class="pagination-link" aria-label="Goto page 1" href="/index.php/Accueil/<?php echo $i ?>"><?php echo $i ?></a></li>
+                <?php if($i == $page){ ?>
+                    <li><a class="pagination-link is-current" aria-label="Goto page 1" href="/index.php/Accueil/<?php echo $i ?>"><?php echo $i ?></a></li>
+                <?php } else{ ?>
+                    <li><a class="pagination-link" aria-label="Goto page 1" href="/index.php/Accueil/<?php echo $i ?>"><?php echo $i ?></a></li>
+                <?php } ?>
             <?php $i++; }?>
         </ul>
     </nav>
