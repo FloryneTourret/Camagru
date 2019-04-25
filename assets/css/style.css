@@ -175,11 +175,11 @@ img#output
     display: none;
 }
 
-#uploadform {
+#snap-form {
     display: none;
 }
 
-#snap-form {
+#uploading-div {
     display: none;
 }
 

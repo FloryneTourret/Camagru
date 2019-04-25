@@ -8,6 +8,8 @@ Class Studio extends Controller{
         $this->loadModel('Studio_model');
         $data = array();
         $data['filters'] = $this->Studio_model->get_filters();
+        var_dump($_POST);
+        var_dump($_FILES);
         if (!empty($_FILES) && !empty($_POST['desc-img-up']) && !empty($_POST['filter']))
         {
             $desc = htmlspecialchars(addslashes($_POST['desc-img-up']));
@@ -29,7 +31,6 @@ Class Studio extends Controller{
                     $name = bin2hex(openssl_random_pseudo_bytes(8));
                     while (file_exists('/var/www/html/assets/upload'.$_SESSION['user']['login'].'/'.$name))
                         $name = bin2hex(openssl_random_pseudo_bytes(8));
-                    $target_file = $target_dir . $name;
                     if ($_POST['filter'] != "none")
                     {
                         if ($_FILES['newimg']['type'] == 'image/png')
@@ -48,13 +49,21 @@ Class Studio extends Controller{
                         else
                             $src = imagecreatefromjpeg(ROOT . $_POST['filter']);
                         $srcpath = ROOT . $_POST['filter'];
+                        $target_file = $target_dir . $name;
                         imagecopy($dest, $src, 0, 0, 0, 0, getimagesize($srcpath)[0], getimagesize($srcpath)[1]);
                         imagejpeg($dest, $target_file);
                         imagedestroy($dest);
                         imagedestroy($src);
                     }
                     else
+                    {
+                        if ($_FILES['newimg']['type'] == 'image/png')
+                            $name = $name.'.png';
+                        else if ($_FILES['newimg']['type'] == 'image/jpeg')
+                            $name = $name.'.jpg';
+                        $target_file = $target_dir . $name;
                         move_uploaded_file($_FILES['newimg']['tmp_name'], $target_file);
+                    }
                     $target = 'assets/upload/'.$_SESSION['user']['login'].'/'.$name;
                     $this->Studio_model->addimg($target, $_SESSION['user']['user_id'], $desc);
                 }
