@@ -192,9 +192,27 @@ img#output
     width: 100%;
 }
 
+.snap-container {
+    margin: 0 !important;
+}
+
+.supperpose {
+    width: 559.33px;
+    height: 419.48px;
+    position: relative;
+    padding: 0;
+    height: auto;
+}
+
+.coucou {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 559.33px;
+    height: 419.48px;
+}
+
 #videoElement {
-	width: 100%;
-	height: auto;
     background-color: #666;
 }
 
