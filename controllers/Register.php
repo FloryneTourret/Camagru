@@ -31,12 +31,25 @@ Class Register extends Controller{
                             {
                                 if ($this->Register_model->login_already_used($login) == FALSE)
                                 {
-                                    $token = bin2hex(openssl_random_pseudo_bytes(15));
-                                    $link = $_SERVER["HTTP_REFERER"].'/activate/'.$token;
-                                    $this->Register_model->register($firstname, $lastname, $login, $email, $password, $token);
-                                    $message = "Bienvenue sur Camagru\r\nPour activer votre compte, veuillez cliquer sur le lien suivant\r\n".$link;
-                                    mail($email, 'Camagru - Account verification', $message);
-                                    header('Location: /index.php/login');
+                                    $secret = "6LeUtpwUAAAAAFSgwDpQWdxHeZ-HgWnpBb0Gm78T";
+                                    $response = $_POST['g-recaptcha-response'];
+                                    $remoteip = $_SERVER['REMOTE_ADDR'];
+                                    $api_url = "https://www.google.com/recaptcha/api/siteverify?secret=" 
+                                    . $secret
+                                    . "&response=" . $response
+                                    . "&remoteip=" . $remoteip ;
+                                    $decode = json_decode(file_get_contents($api_url), true);
+                                    if ($decode['success'] == true) {
+                                        $token = bin2hex(openssl_random_pseudo_bytes(15));
+                                        $link = $_SERVER["HTTP_REFERER"].'/activate/'.$token;
+                                        $this->Register_model->register($firstname, $lastname, $login, $email, $password, $token);
+                                        $message = "Bienvenue sur Camagru\r\nPour activer votre compte, veuillez cliquer sur le lien suivant\r\n".$link;
+                                        mail($email, 'Camagru - Account verification', $message);
+                                        header('Location: /index.php/login');
+                                    }
+                                    else {
+                                        $data['error'] = "Désolé, le captcha est invalide";
+                                    } 
                                 }
                                 else
                                     $data['error'] = "Désolé, ce login est déjà utilisé.";
