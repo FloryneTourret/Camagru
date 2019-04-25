@@ -15,6 +15,15 @@ Class Profile_model extends Model
         return ($req->fetchAll());
     }
 
+    public function get_likes_pictures($id){
+        $req = $this->db->prepare("SELECT * from `likes` 
+                                    INNER JOIN `pictures` on pictures.picture_id = likes.like_picture_id
+                                    INNER JOIN `users` on users.user_id = pictures.picture_user_id
+                                    WHERE `like_user_id` = '$id' ORDER BY `picture_id` DESC");
+        $req->execute();
+        return ($req->fetchAll());
+    }
+
     public function get_image($id){
         $req = $this->db->prepare("SELECT `picture_id`, `picture_path`, `picture_desc`, `picture_user_id`, `picture_date`, `user_id`, `firstname`, `lastname`, `login`, `email`, `biography`, `path_profile_picture`, `password`, `admin`, `enabled`, `notif`,
                                 (select count(*) from likes inner join `users` on users.user_id = likes.like_user_id where likes.like_picture_id = pictures.picture_id) as likes_count,

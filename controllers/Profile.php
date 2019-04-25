@@ -13,6 +13,7 @@ Class Profile extends Controller{
         $data['user'] = $this->Profile_model->get_current($login);
         $id = $data['user']['user_id'];
         $data['pictures'] = $this->Profile_model->get_pictures($id);
+        $data['likes'] = $this->Profile_model->get_likes_pictures($id);
         if ($data['user'] == FALSE)
         {
             $data['error'] = "Le profil que vous recherchez n'existe pas.";
@@ -48,7 +49,7 @@ Class Profile extends Controller{
             $this->Profile_model->comment_image($id, $_SESSION['user']['user_id'], $comment);
             if($data['image']['notif'] == 1)
             {
-                $message = "Bonjour ".$data['image']['login']."\r\nVous avez recçu un commentaire sur l'une de vos images.\r\n";
+                $message = "Bonjour ".$data['image']['login']."\r\nVous avez reçu un commentaire sur l'une de vos images.\r\n";
                 mail($data['image']['email'], 'Camagru - Commentaire', $message);
             }
         }
