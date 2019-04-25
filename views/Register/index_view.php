@@ -91,7 +91,10 @@ if (isset($error))
 
     <input class="input" name="user_token" type="hidden" value="<?php echo $_SESSION['token'];?>">
 
+    
+    
     <div class="field">
+    <div class="g-recaptcha" data-sitekey="6LeUtpwUAAAAAI6IF7x7U1v8_9Ugs71V8F9paE2D"></div>
         <button class="button is-medium is-fullwidth is-primary" type="submit">M'inscrire</button>
     </div>
 </form>
