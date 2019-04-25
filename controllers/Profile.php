@@ -14,6 +14,7 @@ Class Profile extends Controller{
         $id = $data['user']['user_id'];
         $data['pictures'] = $this->Profile_model->get_pictures($id);
         $data['likes'] = $this->Profile_model->get_likes_pictures($id);
+        $data['login'] = $login;
         if ($data['user'] == FALSE)
         {
             $data['error'] = "Le profil que vous recherchez n'existe pas.";

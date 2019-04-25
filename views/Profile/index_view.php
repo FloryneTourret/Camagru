@@ -58,29 +58,18 @@
 </div>
 
 <div id="likes">
-  <div class="row"> 
-    <div class="col" id="col5">
-    </div>
-
-    <div class="col" id="col6">
-    </div> 
-
-    <div class="col" id="col7">
-    </div>
-
-    <div class="col" id="col8">
-    </div>
-  </div>
 </div>
 
 <script src="/assets/js/profile.js"></script>
 <script>
 var pictures = <?php echo json_encode($pictures);?>;
 var likes = <?php echo json_encode($likes);?>;
+var login = <?php echo json_encode($login);?>;
 col1 = document.getElementById('col1');
 col2 = document.getElementById('col2');
 col3 = document.getElementById('col3');
 col4 = document.getElementById('col4');
+likes_div = document.getElementById('likes');
 
 i = 0;
 pictures.forEach(function(element) {
@@ -97,19 +86,8 @@ pictures.forEach(function(element) {
     i = 0;
 });
 
-i = 0;
 likes.forEach(function(element) {
-  i++;
-  if(i == 1)
-    col5.innerHTML += '<img onclick="open_modal('+element['picture_id']+')" src="/'+element['picture_path']+'">'
-  else if(i == 2)
-    col6.innerHTML += '<img onclick="open_modal('+element['picture_id']+')" src="/'+element['picture_path']+'">'
-  else if(i == 3)
-    col7.innerHTML += '<img onclick="open_modal('+element['picture_id']+')" src="/'+element['picture_path']+'">'
-  else if(i == 4)
-    col8.innerHTML += '<img onclick="open_modal('+element['picture_id']+')" src="/'+element['picture_path']+'">'
-  if (i == 4)
-    i = 0;
+    likes_div.innerHTML += '<div class="card" style="cursor: pointer;" onclick="open_modal('+element['picture_id']+')"><div class="card-content has-text-centered"><p class="content">'+ login +' a aimé la photo de <b>'+element['login']+'</b></p></div></div>'
 });
 
 </script>
