@@ -56,7 +56,7 @@
 <div id="uploading-div">
     <div class="columns">
         <div class="supperpose2">
-            <div class="column is-6 is-offset-3" id="suppperpose">
+            <div id="suppperpose">
                 <img id="output">
             </div>
         </div>
