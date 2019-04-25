@@ -6,18 +6,25 @@
             <div class="coucou" id="preview-filter"></div>
         </div>
     </div>
-    <button class="button" onclick="snapshot();">Take Snapshot</button>
-    <button class="button" onclick="showupload();">Upload une photo</button>
 
     <canvas id="myCanvas" width="559.33" height="425.8"></canvas>
 
-    <div id="img-from-snap" class="has-text-centered">
-        <img id="snap-output" src="">
+    <div id="img-from-snap">
+        <div class="supperpose">
+            <img id="snap-output" src="">
+            <div id="calque"></div>
+        </div>
     </div>
+
+    <div class="buttons-list">
+        <button class="button" onclick="snapshot();">Take Snapshot</button>
+        <button class="button" onclick="showupload();">Upload une photo</button>
+    </div>
+
     <!-- Filter list -->
     <div class="columns">
         <div class="column is-6 is-offset-3" id="div-filter-snap">
-            <label class="label">Filtre<i class="fas fa-info-circle" id="info"></i></label>
+            <label class="label">Filtres</label>
             <div id="list-filters">
             </div>
         </div>
@@ -48,8 +55,10 @@
 <!-- Uploading div -->
 <div id="uploading-div">
     <div class="columns">
-        <div class="column is-6 is-offset-3">
-            <img id="output">
+        <div class="supperpose2">
+            <div class="column is-6 is-offset-3" id="suppperpose">
+                <img id="output">
+            </div>
         </div>
     </div>
     <!-- Upload form -->
@@ -61,12 +70,12 @@
                 <div id="container-filters">
                 </div>
 
-                <div class="field">
-                    <label class="label">Description<i class="fas fa-info-circle" id="info"></i></label>
+                <div class="field" id="desc-field">
+                    <label class="label">Description</label>
                     <input class="input" type="text" name="desc-img-up" placeholder="Decrivez votre photo" required>
                 </div>
 
-                <div class="file has-name">
+                <div class="file has-name" id="file_up">
                     <label class="file-label">
                     <input class="file-input" id="file_upload" onchange="name_input();loadFile(event);" type="file" name="newimg" id="newimg" accept="image/*">
                         <span class="file-cta">
@@ -122,6 +131,8 @@ if (navigator.mediaDevices.getUserMedia) {
 }
 
 function snapshot() {
+    var prev = document.getElementById('img-from-snap');
+    prev.style.display = "block";
     var video = document.getElementById('videoElement');
     ctx.drawImage(video, 0,0, canvas.width, canvas.height);
     var video = document.getElementById('videoElement');
@@ -166,6 +177,11 @@ function updatefilter()
 
 function selectbutton(el)
 {
+    var check = document.getElementById('output').src;
+    if (check != '')
+        var calc = document.getElementById('calc-upload');
+    else
+        var calc = document.getElementById('calque');
     var tab = document.getElementsByClassName('filter-img');
     for(i = 0; i < tab.length; i++)
     {
@@ -179,29 +195,46 @@ function selectbutton(el)
     {
         preview.style.backgroundRepeat = "no-repeat";
         preview.style.backgroundImage = "url('"+el.src+"')";
+        calc.style.backgroundImage = "url('"+el.src+"')";
+        calc.style.backgroundRepeat = "no-repeat";
     }
     else
+    {
         preview.style.backgroundImage = null;
+        calc.style.backgroundImage = null;
+    }
 }
 
 function uploadfilter()
 {
     var output = document.getElementById('output').src;
+    var img = document.getElementById('output');
+    var desc = document.getElementById('desc-field');
     if (checkupload == 0 && output != '')
     {
-        console.log('cocueiowyior3b');
+        var fileup = document.getElementById('file_up');
+        fileup.style.display = "none";
+        var container2 = document.getElementById('suppperpose');
+        var calc = document.createElement('div');
+        calc.style.width = img.clientWidth + 'px';
+        calc.style.height = img.clientHeight + 'px';
+        calc.setAttribute('id', 'calc-upload');
+        container2.appendChild(calc);
+        desc.style.display = "block";
         container = document.getElementById('container-filters');
         checkupload = 1;
         var filters = <?php echo json_encode($filters); ?>;
         filters.forEach(function(element) {
             var img = document.createElement('img');
             img.src = '/'+element['filter_path'];
-            img.setAttribute('onclick', "fillinputupload('"+element['filter_path']+"')");
+            img.setAttribute('class', 'filter-img');
+            img.setAttribute('onclick', "fillinputupload('"+element['filter_path']+"');selectbutton(this);");
             container.appendChild(img);
         });
         var img = document.createElement('img');
         img.src = '/assets/img/none.png';
-        img.setAttribute('onclick', "fillinputupload('none')");
+        img.setAttribute('class', 'filter-img');
+        img.setAttribute('onclick', "fillinputupload('none');selectbutton(this);");
         container.appendChild(img);
     }
 }
@@ -233,6 +266,6 @@ function showupload()
 }
 
 setInterval(updatefilter, 1000);
-setInterval(uploadfilter, 1000);
+setInterval(uploadfilter, 100);
 
 </script>

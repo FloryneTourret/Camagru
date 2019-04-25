@@ -198,10 +198,18 @@ img#output
 
 .supperpose {
     width: 559.33px;
-    height: 419.48px;
+    /* height: 419.48px; */
     position: relative;
     padding: 0;
     height: auto;
+    margin: auto;
+}
+
+.supperpose2 {
+    position: relative;
+    padding: 0;
+    height: auto;
+    margin: auto;
 }
 
 .coucou {
@@ -228,12 +236,45 @@ img#output
     display: none;
 }
 
+.buttons-list {
+    text-align: center;
+}
+
 #container-filters img {
     width: 60px;
     margin: 5px;
 }
 
+#div-filter-snap
+{
+    text-align: center;
+}
+
+#img-from-snap {
+    display: none;
+    position: relative;
+}
+
+#calque {
+    height: 425px;
+    width: 559px;
+    position: absolute;
+    top: 0;
+}
+
 #list-filters img {
     width: 60px;
     margin: 5px;
+}
+
+#desc-field {
+    display: none;
+}
+#suppperpose {
+    position: relative;
+}
+
+#calc-upload {
+    position : absolute;
+    top: 12px;
 }
