@@ -2,7 +2,7 @@
 
 class Database
 {
-    private $_server = 'mysql:host=172.20.0.2;dbname=camagru';
+    private $_server = 'mysql:host=172.18.0.2;dbname=camagru';
     private $_user = 'root';
     private $_password = 'root';
     private $options = array(

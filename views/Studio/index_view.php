@@ -58,6 +58,7 @@
         <div class="supperpose2">
             <div id="suppperpose">
                 <img id="output">
+                <img id="output2" style="display:none">
             </div>
         </div>
     </div>
@@ -115,10 +116,10 @@ function name_input(){
     document.getElementById('file_output').innerHTML = (basename(document.getElementById('file_upload').value));
 }
 
-var loadFile = function(event) {
+function loadFile(event) {
     var output = document.getElementById('output');
     output.src = URL.createObjectURL(event.target.files[0]);
-};
+}
 
 var video = document.querySelector("#videoElement");
 if (navigator.mediaDevices.getUserMedia) {
@@ -177,6 +178,12 @@ function updatefilter()
 
 function selectbutton(el)
 {
+
+    var output = document.getElementById('output');
+    var output_naturalWidth = output.naturalWidth;
+    var output_width = output.clientWidth;
+    var ratio = (output_naturalWidth / output_width);
+
     var check = document.getElementById('output').src;
     if (check != '')
         var calc = document.getElementById('calc-upload');
@@ -197,6 +204,8 @@ function selectbutton(el)
         preview.style.backgroundImage = "url('"+el.src+"')";
         calc.style.backgroundImage = "url('"+el.src+"')";
         calc.style.backgroundRepeat = "no-repeat";
+        var filter_size = el.naturalWidth / ratio;
+        calc.style.backgroundSize = filter_size + 'px';
     }
     else
     {
