@@ -3,6 +3,11 @@
     <a class="navbar-item" href="/">
           <img src="/assets/img/picture.png" width="auto" height="28">
     </a>
+    <?php if (isset($_SESSION['user'])){?>
+      <a class="navbar-item" href="/index.php/Studio">
+          <img src="/assets/img/filter.png" width="auto" height="28">
+      </a>
+    <?php } ?>
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -11,13 +16,6 @@
   </div>
 
   <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-    <?php if (isset($_SESSION['user'])){?>
-      <a class="navbar-item" href="/index.php/Studio">
-          <img src="/assets/img/filter.png" width="auto" height="28">
-      </a>
-    <?php } ?>
-    </div>
 
     <div class="navbar-end">
         <?php if (isset($_SESSION['user'])){?>
