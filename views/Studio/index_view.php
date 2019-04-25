@@ -1,14 +1,15 @@
 <!-- Div video capture -->
-<div id="snapping-div"> 
-    <div class="columns snap-container" id="snapping">
-        <div class="column is-8 is-offset-2">
-            <video autoplay="true" id="videoElement"></video>
-            <button onclick="snapshot();">Take Snapshot</button>
-            <button class="button" onclick="showupload();">Upload une photo</button>
+<div id="snapping-div">
+    <div class="snap-container" id="snapping">
+        <div class="supperpose">
+            <video autoplay="true" id="videoElement" height="100%"></video>
+            <div class="coucou" id="preview-filter"></div>
         </div>
     </div>
+    <button class="button" onclick="snapshot();">Take Snapshot</button>
+    <button class="button" onclick="showupload();">Upload une photo</button>
 
-    <canvas id="myCanvas" width="619.5" height="464.53"></canvas>
+    <canvas id="myCanvas" width="559.33" height="425.8"></canvas>
 
     <div id="img-from-snap" class="has-text-centered">
         <img id="snap-output" src="">
@@ -151,14 +152,36 @@ function updatefilter()
         filters.forEach(function(element) {
             var img = document.createElement('img');
             img.src = '/'+element['filter_path'];
-            img.setAttribute('onclick', "fillinput('"+element['filter_path']+"')");
+            img.setAttribute('onclick', "fillinput('"+element['filter_path']+"');selectbutton(this);");
+            img.setAttribute('class', 'filter-img');
             container.appendChild(img);
         });
         var img = document.createElement('img');
         img.src = '/assets/img/none.png';
-        img.setAttribute('onclick', "fillinput('none')");
+        img.setAttribute('class', 'filter-img');
+        img.setAttribute('onclick', "fillinput('none');selectbutton(this)");
         container.appendChild(img);
     }
+}
+
+function selectbutton(el)
+{
+    var tab = document.getElementsByClassName('filter-img');
+    for(i = 0; i < tab.length; i++)
+    {
+        tab[i].style.border = "none";
+        tab[i].classList.remove("filter-active");
+    }
+    el.classList.add("filter-active");
+    el.style.border = "1px solid black";
+    preview = document.getElementById('preview-filter');
+    if (el.src.substr(-8) != "none.png")
+    {
+        preview.style.backgroundRepeat = "no-repeat";
+        preview.style.backgroundImage = "url('"+el.src+"')";
+    }
+    else
+        preview.style.backgroundImage = null;
 }
 
 function uploadfilter()
