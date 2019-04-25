@@ -38,13 +38,13 @@
                 <input type="hidden" id="snap-img" name="snap-img">
 
                 <div class="field">
-                    <label class="label">Description<i class="fas fa-info-circle" id="info"></i></label>
+                    <label class="label">Description</label>
                     <input class="input" type="text" name="desc-img" placeholder="Decrivez votre photo" required>
                 </div>
 
                 <div class="field">
                     <input type="hidden" name="filter-snap" id="filter-snap">
-                    <button class="button is-small is-fullwidth is-primary" type="submit">Envoyer la photo</button>
+                    <button class="button is-small is-fullwidth is-primary" type="submit" id="charger_snap" style="display: none;">Publier la photo</button>
                 </div>
             </form>
         </div>
@@ -65,7 +65,7 @@
     <!-- Upload form -->
     <div class="columns">
         <div class="column is-half is-offset-one-quarter" id="uploadform">
-            <form action="/index.php/Studio" method="post" enctype="multipart/form-data" class="form_upload">
+            <form action="/index.php/Studio" method="post" enctype="multipart/form-data" class="form_upload" id="form_upload">
 
                 <!-- filter container -->
                 <div id="container-filters">
@@ -93,8 +93,8 @@
                     </label>
                 </div>
                 <div class="field">
-                    <input type="hidden" name="filter" id="filter_path_up">
-                    <button class="button is-small is-fullwidth is-primary" type="submit">Charger la photo</button>
+                    <input type="hidden" name="filter" id="filter_path_up" required>
+                    <button class="button is-small is-fullwidth is-primary" id="charger_photo" style="display: none;" type="submit">Publier la photo</button>
                 </div>
             </form>
         </div>
@@ -212,6 +212,10 @@ function selectbutton(el)
         preview.style.backgroundImage = null;
         calc.style.backgroundImage = null;
     }
+    if(document.getElementById('snap-form').style.display == 'block')
+        document.getElementById('charger_snap').style.display = 'block';
+    else if(document.getElementById('uploading-div').style.display == 'block')
+        document.getElementById('charger_photo').style.display = 'block';
 }
 
 function uploadfilter()
