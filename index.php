@@ -27,6 +27,11 @@ if ($controller == 'Profile' && $method != 'picture')
     $method = 'index';
     $argv = isset($params[1]) && !empty($params[1]) ? $params[1] : '';
 }
+if ($controller == 'Accueil')
+{
+    $method = 'index';
+    $argv = isset($params[1]) && !empty($params[1]) ? $params[1] : '';
+}
 
 if (file_exists('controllers/' . $controller . '.php')) {
     require 'controllers/' . $controller . '.php';

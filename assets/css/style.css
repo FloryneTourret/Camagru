@@ -75,6 +75,13 @@ ul.modal_list li{
 #picture_modal::-webkit-scrollbar { 
     display: none; 
 }
+.accueil_picture{
+    margin-top: 3vh;
+    margin-bottom: 3vh!important;
+}
+.pagination-top{
+    margin-top: 3vh;
+}
 
 .switch {
     position: relative;
