@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : mysql
--- Généré le :  ven. 26 avr. 2019 à 12:09
+-- Généré le :  ven. 26 avr. 2019 à 12:12
 -- Version du serveur :  5.5.61
 -- Version de PHP :  7.2.14
 
@@ -63,7 +63,8 @@ INSERT INTO `filters` (`filter_id`, `filter_name`, `filter_path`) VALUES
 (14, 'Chaaaaat', 'assets/upload/filter/aca1ca081de6c2fd.png'),
 (15, 'Tchin', 'assets/upload/filter/c37bb29e4d4252c6.png'),
 (16, 'Plop', 'assets/upload/filter/66ff58eb4fa80ed9.png'),
-(17, 'My name is Trump', 'assets/upload/filter/fa821ab70ce6f455.png');
+(17, 'My name is Trump', 'assets/upload/filter/fa821ab70ce6f455.png'),
+(18, 'Oh', 'assets/upload/filter/9f0dab8f35e0f380.png');
 
 -- --------------------------------------------------------
 
@@ -167,7 +168,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT pour la table `filters`
 --
 ALTER TABLE `filters`
-  MODIFY `filter_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `filter_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT pour la table `pictures`
