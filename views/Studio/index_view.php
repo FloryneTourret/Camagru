@@ -1,4 +1,7 @@
 <!-- Div video capture -->
+<?php if (!empty($error)){ ?>
+    <p class="has-text-danger"><?php echo $error; ?></p>
+<?php } ?>
 <div id="snapping-div">
     <div class="field" style="margin-top: 24px; margin-bottom: 24px;">
         <button class="button" onclick="showupload();">Uploader une photo</button>
