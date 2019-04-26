@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : mysql
--- Généré le :  ven. 26 avr. 2019 à 14:17
+-- Généré le :  ven. 26 avr. 2019 à 15:21
 -- Version du serveur :  5.5.61
 -- Version de PHP :  7.2.14
 
@@ -44,7 +44,8 @@ INSERT INTO `comments` (`comment_id`, `comment_user_id`, `comment_picture_id`, `
 (1, 1, 4, 'Un pandquin !', '2019-04-26 14:04:18'),
 (2, 2, 6, 'Tchin !', '2019-04-26 14:05:22'),
 (3, 2, 6, 'Tchin !', '2019-04-26 14:05:23'),
-(4, 5, 7, 'Trop mignon! &lt;3', '2019-04-26 14:15:58');
+(4, 5, 7, 'Trop mignon! &lt;3', '2019-04-26 14:15:58'),
+(5, 1, 5, 'Ou Crocmou', '2019-04-26 15:21:43');
 
 -- --------------------------------------------------------
 
@@ -124,7 +125,9 @@ INSERT INTO `pictures` (`picture_id`, `picture_path`, `picture_desc`, `picture_u
 (5, 'assets/upload/lettoh/a655cd7b81684606.jpg', 'Je suis BatCat', 1, '2019-04-26 14:03:51'),
 (6, 'assets/upload/lettoh/2c0a4d319cae4260.jpg', 'Santé !', 1, '2019-04-26 14:05:04'),
 (7, 'assets/upload/ftourret/235c16d847825d28.jpg', 'Mon chat. Ou pas.', 2, '2019-04-26 14:05:46'),
-(8, 'assets/upload/jdoe/c4a9d27ed2a300d1.jpg', 'Voilà.', 5, '2019-04-26 14:16:39');
+(8, 'assets/upload/jdoe/c4a9d27ed2a300d1.jpg', 'Voilà.', 5, '2019-04-26 14:16:39'),
+(9, 'assets/upload/lettoh/2e2787b7f87e6987.png', 'Wtf !', 1, '2019-04-26 15:20:59'),
+(10, 'assets/upload/lettoh/5ad1efe9745a715a.png', 'Make america great again', 1, '2019-04-26 15:21:22');
 
 -- --------------------------------------------------------
 
@@ -198,7 +201,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `filters`
@@ -210,7 +213,7 @@ ALTER TABLE `filters`
 -- AUTO_INCREMENT pour la table `pictures`
 --
 ALTER TABLE `pictures`
-  MODIFY `picture_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `picture_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `users`
