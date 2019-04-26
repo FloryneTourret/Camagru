@@ -134,10 +134,8 @@ lastpic.forEach(function(element)
     var imgcontainer = document.getElementById('last'+i);
     var img = document.createElement('img');
     img.src = '/'+element['picture_path'];
-    console.log(img.src);
     i++;
     imgcontainer.appendChild(img);
-    console.log(element['picture_path']);
 });
 
 function basename(path) {
