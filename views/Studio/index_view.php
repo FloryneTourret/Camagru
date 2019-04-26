@@ -23,7 +23,7 @@
     </div>
 
     <div class="buttons-list">
-        <button class="button" onclick="snapshot();">Prendre la photo</button>
+        <button class="button" onclick="snapshot();" id="take_picture" disabled>Prendre la photo</button>
     </div>
 
     <!-- Filter list -->
@@ -247,8 +247,10 @@ function selectbutton(el)
     }
     if(document.getElementById('uploading-div').style.display == 'block')
         document.getElementById('charger_photo').style.display = 'block';
-    else
+    else{
         document.getElementById('charger_snap').style.display = 'block';
+        document.getElementById('take_picture').removeAttribute("disabled");
+    }
 }
 
 function uploadfilter()
