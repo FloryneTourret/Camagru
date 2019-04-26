@@ -65,6 +65,7 @@ Class Studio extends Controller{
                     }
                     $target = 'assets/upload/'.$_SESSION['user']['login'].'/'.$name;
                     $this->Studio_model->addimg($target, $_SESSION['user']['user_id'], $desc);
+                    header("Location: /index.php/Profile/".$_SESSION['user']['login']);
                 }
                 else
                     $data['error'] = 'Le fichier renseigné n\'est pas une image';
@@ -99,6 +100,7 @@ Class Studio extends Controller{
                 file_put_contents($target_dir.$name.'.'.$ext, file_get_contents($_POST['snap-img']));
             $target = 'assets/upload/'.$_SESSION['user']['login'].'/'.$name.'.'.$ext;
             $this->Studio_model->addimg($target, $_SESSION['user']['user_id'], $desc);
+            header("Location: /index.php/Profile/".$_SESSION['user']['login']);
         }
 
         $this->loadModel('Studio_model');
