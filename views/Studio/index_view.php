@@ -238,10 +238,10 @@ function selectbutton(el)
         preview.style.backgroundImage = null;
         calc.style.backgroundImage = null;
     }
-    if(document.getElementById('snap-form').style.display == 'block')
-        document.getElementById('charger_snap').style.display = 'block';
-    else if(document.getElementById('uploading-div').style.display == 'block')
+    if(document.getElementById('uploading-div').style.display == 'block')
         document.getElementById('charger_photo').style.display = 'block';
+    else
+        document.getElementById('charger_snap').style.display = 'block';
 }
 
 function uploadfilter()
