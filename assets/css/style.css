@@ -277,3 +277,8 @@ img#output
     position : absolute;
     top: 12px;
 }
+
+.lastphotos {
+    width: calc(50% / 4);
+    padding: 5px;
+}

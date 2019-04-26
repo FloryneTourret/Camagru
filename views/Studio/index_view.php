@@ -101,12 +101,38 @@
     </div>
 </div>
 
+<div class="columns">
+    <div class="column is-full has-text-centered">
+        <p>Mes dernières photos</p>
+        <div class="level">
+            <div class="level-item lastphotos" id="last1"></div>
+            <div class="level-item lastphotos" id="last2"></div>
+            <div class="level-item lastphotos" id="last3"></div>
+            <div class="level-item lastphotos" id="last4"></div>
+            <div class="level-item lastphotos" id="last5"></div>
+        </div>
+    </div>
+</div>
+
 <script>
 
 canvas = document.getElementById("myCanvas");
 ctx = canvas.getContext('2d');
 check = 0;
 checkupload = 0;
+
+var lastpic = <?php echo json_encode($lastpictures); ?>;
+i = 1;
+lastpic.forEach(function(element)
+{
+    var imgcontainer = document.getElementById('last'+i);
+    var img = document.createElement('img');
+    img.src = '/'+element['picture_path'];
+    console.log(img.src);
+    i++;
+    imgcontainer.appendChild(img);
+    console.log(element['picture_path']);
+});
 
 function basename(path) {
     return path.replace(/\\/g,'/').replace( /.*\//, '' );
