@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : mysql
--- Généré le :  ven. 26 avr. 2019 à 11:49
+-- Généré le :  ven. 26 avr. 2019 à 12:09
 -- Version du serveur :  5.5.61
 -- Version de PHP :  7.2.14
 
@@ -56,7 +56,14 @@ INSERT INTO `filters` (`filter_id`, `filter_name`, `filter_path`) VALUES
 (5, 'Batman', 'assets/upload/filter/c69784c7989b57cd.png'),
 (7, 'Oreilles', 'assets/upload/filter/201aefdc1b632b14.png'),
 (8, 'Funny face', 'assets/upload/filter/228d6a619ebb9f65.png'),
-(9, 'Lunettes moustache', 'assets/upload/filter/46521e1d15a2f617.png');
+(9, 'Lunettes moustache', 'assets/upload/filter/46521e1d15a2f617.png'),
+(11, 'Bob', 'assets/upload/filter/0b2a0b205ec3d3cd.png'),
+(12, 'Chauve', 'assets/upload/filter/5750c339945aea24.png'),
+(13, 'Trump', 'assets/upload/filter/45bdf8cdfb076dbd.png'),
+(14, 'Chaaaaat', 'assets/upload/filter/aca1ca081de6c2fd.png'),
+(15, 'Tchin', 'assets/upload/filter/c37bb29e4d4252c6.png'),
+(16, 'Plop', 'assets/upload/filter/66ff58eb4fa80ed9.png'),
+(17, 'My name is Trump', 'assets/upload/filter/fa821ab70ce6f455.png');
 
 -- --------------------------------------------------------
 
@@ -82,13 +89,6 @@ CREATE TABLE `pictures` (
   `picture_user_id` int(11) NOT NULL,
   `picture_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Déchargement des données de la table `pictures`
---
-
-INSERT INTO `pictures` (`picture_id`, `picture_path`, `picture_desc`, `picture_user_id`, `picture_date`) VALUES
-(1, 'assets/upload/ftourret/ab45b33ac7598a9b.png', 'Coucou les copains', 2, '2019-04-26 11:47:12');
 
 -- --------------------------------------------------------
 
@@ -167,13 +167,13 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT pour la table `filters`
 --
 ALTER TABLE `filters`
-  MODIFY `filter_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `filter_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT pour la table `pictures`
 --
 ALTER TABLE `pictures`
-  MODIFY `picture_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `picture_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `users`
