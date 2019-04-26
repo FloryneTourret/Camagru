@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : mysql
--- Généré le :  ven. 26 avr. 2019 à 11:18
+-- Généré le :  ven. 26 avr. 2019 à 11:49
 -- Version du serveur :  5.5.61
 -- Version de PHP :  7.2.14
 
@@ -48,6 +48,16 @@ CREATE TABLE `filters` (
   `filter_path` varchar(255) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Déchargement des données de la table `filters`
+--
+
+INSERT INTO `filters` (`filter_id`, `filter_name`, `filter_path`) VALUES
+(5, 'Batman', 'assets/upload/filter/c69784c7989b57cd.png'),
+(7, 'Oreilles', 'assets/upload/filter/201aefdc1b632b14.png'),
+(8, 'Funny face', 'assets/upload/filter/228d6a619ebb9f65.png'),
+(9, 'Lunettes moustache', 'assets/upload/filter/46521e1d15a2f617.png');
+
 -- --------------------------------------------------------
 
 --
@@ -72,6 +82,13 @@ CREATE TABLE `pictures` (
   `picture_user_id` int(11) NOT NULL,
   `picture_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `pictures`
+--
+
+INSERT INTO `pictures` (`picture_id`, `picture_path`, `picture_desc`, `picture_user_id`, `picture_date`) VALUES
+(1, 'assets/upload/ftourret/ab45b33ac7598a9b.png', 'Coucou les copains', 2, '2019-04-26 11:47:12');
 
 -- --------------------------------------------------------
 
@@ -150,13 +167,13 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT pour la table `filters`
 --
 ALTER TABLE `filters`
-  MODIFY `filter_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `filter_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pour la table `pictures`
 --
 ALTER TABLE `pictures`
-  MODIFY `picture_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `picture_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `users`
