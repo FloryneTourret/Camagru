@@ -31,7 +31,7 @@ Class Register extends Controller{
                             {
                                 if ($this->Register_model->login_already_used($login) == FALSE)
                                 {
-                                    $secret = "6LeUtpwUAAAAAFSgwDpQWdxHeZ-HgWnpBb0Gm78T";
+                                    $secret = "secret";
                                     $response = $_POST['g-recaptcha-response'];
                                     $remoteip = $_SERVER['REMOTE_ADDR'];
                                     $api_url = "https://www.google.com/recaptcha/api/siteverify?secret=" 
