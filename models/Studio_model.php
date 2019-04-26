@@ -14,6 +14,13 @@ Class Studio_model extends Model
         $req->execute();
         return ($req->fetchAll());
     }
+
+    public function get_last_pictures($id)
+    {
+        $req = $this->db->prepare("SELECT * FROM `pictures` WHERE `picture_user_id` = '$id' ORDER BY picture_date DESC LIMIT 5");
+        $req->execute();
+        return ($req->fetchAll());
+    }
 }
 
 ?>

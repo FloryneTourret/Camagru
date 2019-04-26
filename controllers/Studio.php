@@ -8,6 +8,7 @@ Class Studio extends Controller{
         $this->loadModel('Studio_model');
         $data = array();
         $data['filters'] = $this->Studio_model->get_filters();
+        $data['lastpictures'] = $this->Studio_model->get_last_pictures($_SESSION['user']['user_id']);
         if (!empty($_FILES) && !empty($_POST['desc-img-up']) && !empty($_POST['filter']))
         {
             $desc = htmlspecialchars(addslashes($_POST['desc-img-up']));
@@ -74,6 +75,8 @@ Class Studio extends Controller{
             $filter = htmlspecialchars(addslashes($_POST['filter-snap']));
             $desc = htmlspecialchars(addslashes($_POST['desc-img']));
             $target_dir = '/var/www/html/assets/upload/'.$_SESSION['user']['login'].'/';
+            if (!(file_exists($target_dir)))
+                mkdir($target_dir, 0777, true);
             $name = bin2hex(openssl_random_pseudo_bytes(8));
             while (file_exists('/var/www/html/assets/upload'.$_SESSION['user']['login'].'/'.$name))
                 $name = bin2hex(openssl_random_pseudo_bytes(8));
@@ -93,7 +96,7 @@ Class Studio extends Controller{
                 imagedestroy($src);
             }
             else
-                file_put_contents($target_dir.'/'.$name.'.'.$ext, file_get_contents($_POST['snap-img']));
+                file_put_contents($target_dir.$name.'.'.$ext, file_get_contents($_POST['snap-img']));
             $target = 'assets/upload/'.$_SESSION['user']['login'].'/'.$name.'.'.$ext;
             $this->Studio_model->addimg($target, $_SESSION['user']['user_id'], $desc);
         }
