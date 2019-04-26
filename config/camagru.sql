@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : mysql
--- Généré le :  jeu. 25 avr. 2019 à 21:15
+-- Généré le :  ven. 26 avr. 2019 à 11:18
 -- Version du serveur :  5.5.61
 -- Version de PHP :  7.2.14
 
@@ -100,9 +100,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `login`, `email`, `biography`, `path_profile_picture`, `password`, `admin`, `notif`, `enabled`, `token`, `token_expiration`) VALUES
-(1, 'Frédéric', 'LEONARD', 'lettoh', 'lettoh08@gmail.com', NULL, 'assets/upload/lettoh/02de54d0db88a333.jpg', '$2y$10$N9eet7EhGZfqNr5ZNb5k9eVy4BXIuxmcVP/4xD5NFUsv/pL.JABjS', 1, 1, 1, NULL, NULL),
-(2, 'Floryne', 'TOURRET', 'ftourret', 'floryne.tourret@gmail.com', NULL, 'assets/upload/ftourret/47c54b7051dc1ddd.jpg', '$2y$10$iBDaoi5JQ7QKIIqLi.DWve3Qp6cAyx5PuUxGmoclQqhPl3rZ6MxsC', 1, 1, 1, NULL, NULL),
-(3, 'Frédéric', 'LEONARD', 'lettard', 'frederic.leonard.pro@gmail.com', NULL, NULL, '$2y$10$LL173fJwQAKDxyx//q15BukDGX//c4x0Kzo4pkHYYZY0njcSNSwCS', 0, 1, 1, NULL, NULL);
+(1, 'Frédéric', 'LEONARD', 'lettoh', 'lettoh08@gmail.com', NULL, 'assets/upload/lettoh/6baa595273d327de.jpg', '$2y$10$N9eet7EhGZfqNr5ZNb5k9eVy4BXIuxmcVP/4xD5NFUsv/pL.JABjS', 1, 1, 1, NULL, NULL),
+(2, 'Floryne', 'TOURRET', 'ftourret', 'floryne.tourret@gmail.com', NULL, 'assets/upload/ftourret/6ea00144c09ab536.jpg', '$2y$10$iBDaoi5JQ7QKIIqLi.DWve3Qp6cAyx5PuUxGmoclQqhPl3rZ6MxsC', 1, 1, 1, NULL, NULL),
+(3, 'Frédéric', 'LEONARD', 'lettard', 'frederic.leonard.pro@gmail.com', NULL, NULL, '$2y$10$LL173fJwQAKDxyx//q15BukDGX//c4x0Kzo4pkHYYZY0njcSNSwCS', 0, 1, 0, NULL, NULL),
+(4, 'Floryne', 'TOURRET', 'floryne', 'floryne.tourret.pro@gmail.com', NULL, NULL, '$2y$10$KNuX97t7Y.HqGWn/A.28l.Dnf6PZe5Z2VG6NuJeqvlODT59QiDPWC', 0, 1, -1, NULL, NULL);
 
 --
 -- Index pour les tables déchargées
@@ -161,7 +162,7 @@ ALTER TABLE `pictures`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
