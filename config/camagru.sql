@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 -- Structure de la table `comments`
 --
 
-CREATE TABLE `comments` (
+CREATE TABLE IF NOT EXISTS `comments` (
   `comment_id` int(11) NOT NULL,
   `comment_user_id` int(11) NOT NULL,
   `comment_picture_id` int(11) NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE `comments` (
 -- Structure de la table `filters`
 --
 
-CREATE TABLE `filters` (
+CREATE TABLE IF NOT EXISTS `filters` (
   `filter_id` int(11) NOT NULL,
   `filter_name` varchar(255) COLLATE utf8_bin NOT NULL,
   `filter_path` varchar(255) COLLATE utf8_bin NOT NULL
@@ -72,7 +72,7 @@ INSERT INTO `filters` (`filter_id`, `filter_name`, `filter_path`) VALUES
 -- Structure de la table `likes`
 --
 
-CREATE TABLE `likes` (
+CREATE TABLE IF NOT EXISTS `likes` (
   `like_user_id` int(11) NOT NULL,
   `like_picture_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -83,7 +83,7 @@ CREATE TABLE `likes` (
 -- Structure de la table `pictures`
 --
 
-CREATE TABLE `pictures` (
+CREATE TABLE IF NOT EXISTS `pictures` (
   `picture_id` int(11) NOT NULL,
   `picture_path` varchar(255) COLLATE utf8_bin NOT NULL,
   `picture_desc` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -97,7 +97,7 @@ CREATE TABLE `pictures` (
 -- Structure de la table `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(11) NOT NULL,
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,

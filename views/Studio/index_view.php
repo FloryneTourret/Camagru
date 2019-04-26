@@ -1,5 +1,8 @@
 <!-- Div video capture -->
 <div id="snapping-div">
+    <div class="field" style="margin-top: 24px; margin-bottom: 24px;">
+        <button class="button" onclick="showupload();">Uploader une photo</button>
+    </div>
     <div class="snap-container" id="snapping">
         <div class="supperpose">
             <video autoplay="true" id="videoElement" height="100%"></video>
@@ -18,7 +21,6 @@
 
     <div class="buttons-list">
         <button class="button" onclick="snapshot();">Prendre la photo</button>
-        <button class="button" onclick="showupload();">Uploader une photo</button>
     </div>
 
     <!-- Filter list -->
@@ -54,6 +56,10 @@
 
 <!-- Uploading div -->
 <div id="uploading-div">
+
+    <div class="field" style="margin-top: 24px; margin-bottom: 24px;">
+        <a class="button" href="/index.php/Studio">Prendre une photo</a><br>
+    </div>
     <div class="columns">
         <div class="supperpose2">
             <div id="suppperpose">
