@@ -15,7 +15,7 @@ Class Studio extends Controller{
             if ($_FILES['newimg']['type'] == 'image/jpeg' || $_FILES['newimg']['type'] == 'image/png'
                     || $_FILES['newimg']['type'] == 'image/jpg')
             {
-                if (!($check = @getimagesize($_FILES['newimg']['tmp_name'])))
+                $check = @getimagesize($_FILES['newimg']['tmp_name']);
                 if ($check !== false)
                     $upload = 1;
                 else
